@@ -289,15 +289,15 @@ class _BankingTransferState extends State<BankingTransfer> {
                             .onTap(() {}),
                       ),
                       8.height,
-                      Text("Use Face ID to verify transaction",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 14,
-                              fontFamily: fontRegular)),
-                      Image.asset(Banking_ic_face_id,
-                              color: Banking_Primary, height: 40, width: 40)
-                          .center()
-                          .paddingOnly(top: 16, bottom: 16),
+                      // Text("Use Face ID to verify transaction",
+                      //     style: primaryTextStyle(
+                      //         color: Banking_TextColorSecondary,
+                      //         size: 14,
+                      //         fontFamily: fontRegular)),
+                      // Image.asset(Banking_ic_face_id,
+                      //         color: Banking_Primary, height: 40, width: 40)
+                      //     .center()
+                      //     .paddingOnly(top: 16, bottom: 16),
                     ],
                   ).visible(isGetOtp == true),
                   Row(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingDashboard.dart';
-import 'BankingForgotPassword.dart';
 import '../utils/BankingColors.dart';
 import '../utils/BankingImages.dart';
 import '../utils/BankingStrings.dart';
@@ -35,19 +34,7 @@ class _BankingSignInState extends State<BankingSignIn> {
                 Text(Banking_lbl_SignIn, style: boldTextStyle(size: 30)),
                 EditText(text: "Phone", isPassword: false),
                 8.height,
-                EditText(text: "Password", isPassword: true, isSecure: true),
-                8.height,
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(Banking_lbl_Forgot,
-                          style: secondaryTextStyle(size: 16))
-                      .onTap(
-                    () {
-                      BankingForgotPassword().launch(context);
-                    },
-                  ),
-                ),
-                16.height,
+                EditText(text: "Password", isPassword: true, isSecure: true),            
                 BankingButton(
                   textContent: Banking_lbl_SignIn,
                   onPressed: () {

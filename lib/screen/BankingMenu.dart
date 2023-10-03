@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kroell_bank/screen/BankingSignIn.dart';
 import '../utils/BankingColors.dart';
 import '../utils/BankingContants.dart';
 import '../utils/BankingImages.dart';
@@ -8,11 +9,7 @@ import 'package:nb_utils/nb_utils.dart';
 
 import 'BankingChangePasword.dart';
 import 'BankingContact.dart';
-import 'BankingLocation.dart';
-import 'BankingNews.dart';
 import 'BankingQuestionAnswer.dart';
-import 'BankingRateInfo.dart';
-import 'BankingShareInformation.dart';
 import 'BankingTermsCondition.dart';
 
 class BankingMenu extends StatefulWidget {
@@ -88,42 +85,7 @@ class _BankingMenuState extends State<BankingMenu> {
                         .onTap(() {
                       BankingChangePassword().launch(context);
                     }),
-                    bankingOption(
-                            Banking_ic_Share,
-                            Banking_lbl_Share_Information_account,
-                            Banking_greenLightColor)
-                        .onTap(() {
-                      BankingShareInformation().launch(context);
-                    }),
-                  ],
-                ),
-              ),
-              16.height,
-              Container(
-                padding: EdgeInsets.all(8),
-                decoration: boxDecorationWithShadow(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: <Widget>[
-                    10.height,
-                    bankingOption(Banking_ic_News, Banking_lbl_News,
-                            Banking_blueColor)
-                        .onTap(() {
-                      BankingNews().launch(context);
-                    }),
-                    bankingOption(
-                            Banking_ic_Chart,
-                            Banking_lbl_Rate_Information,
-                            Banking_greenLightColor)
-                        .onTap(() {
-                      BankingRateInfo().launch(context);
-                    }),
-                    bankingOption(Banking_ic_Pin, Banking_lbl_Location,
-                            Banking_greenLightColor)
-                        .onTap(() {
-                      BankingLocation().launch(context);
-                    }),
-                    10.height,
+
                   ],
                 ),
               ),
@@ -158,7 +120,7 @@ class _BankingMenuState extends State<BankingMenu> {
                   ],
                 ),
               ),
-              16.height,
+	      16.height,              
               Container(
                 padding: EdgeInsets.all(8),
                 decoration: boxDecorationWithShadow(
@@ -233,7 +195,8 @@ dialogContent(BuildContext context) {
               Text("Logout",
                       style: primaryTextStyle(size: 18, color: Banking_Primary))
                   .onTap(() {
-                finish(context);
+                Navigator.of(context).pop();  // Close the dialog
+                BankingSignIn().launch(context);  // Navigate to login screen
               }).paddingLeft(16)
             ],
           ),

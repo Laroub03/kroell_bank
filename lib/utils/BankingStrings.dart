@@ -1,9 +1,10 @@
-const Banking_lbl_app_Name = "Cy Capital Bank";
+const Banking_lbl_app_Name = "Kroell Bank";
 const Banking_lbl_app_Sub_title = "Mobile Banking Apps";
 const Banking_lbl_Walk1Title = "Online Payment";
 const Banking_lbl_Walk2Title = "Quickly Tranfer";
 const Banking_lbl_Walk3Title = "Saving Online";
-const Banking_lbl_Walk1SubTitle = "Each payment process is so simple and hassle-free, and I don not need to be worried about being scammedEach Payment process is so simple and hassle-free";
+const Banking_lbl_Walk1SubTitle =
+    "Each payment process is so simple and hassle-free, and I don not need to be worried about being scammedEach Payment process is so simple and hassle-free";
 const Banking_lbl_Get_Started = "Get Started";
 const Banking_lbl_SignIn = "Sign In";
 const Banking_lbl_Forgot = "Forgot?";
@@ -45,7 +46,8 @@ const Banking_lbl_Payment_History = "Payment\nHistory";
 const Banking_lbl_Get_OTP = "Get OTP";
 const Banking_lbl_Confirm_Transfer = "Confirm Transfer";
 const Banking_lbl_Transfer_Successful = "Transfer\nSuccessful";
-const Banking_lbl_Info_Transfer_Successful = "You Have successfully transfered \$1000 \n to John Smith";
+const Banking_lbl_Info_Transfer_Successful =
+    "You Have successfully transfered \$1000 \n to John Smith";
 const Banking_lbl_Transaction_History = "Transaction History";
 const Banking_lbl_Rate_Info = "Rate \nInformation";
 const Banking_lbl_Branch_Location = "Branch \nLocation";

@@ -45,7 +45,7 @@ List<BankingQuesAnsModel> bankingQuestionList() {
   list.add(list1);
 
   var list2 = BankingQuesAnsModel(
-      "Money return when you go shopping with credit card of Cy Captial Bank ?");
+      "Money return when you go shopping with credit card of Kroell Bank ?");
   list.add(list2);
 
   var list3 = BankingQuesAnsModel(
@@ -53,7 +53,7 @@ List<BankingQuesAnsModel> bankingQuestionList() {
   list.add(list3);
 
   var list4 = BankingQuesAnsModel(
-      "Cy Captial Bank give a giftbox for new customers who create account ?");
+      "Kroell Bank give a giftbox for new customers who create account ?");
   list.add(list4);
 
   var list5 = BankingQuesAnsModel(
@@ -61,7 +61,7 @@ List<BankingQuesAnsModel> bankingQuestionList() {
   list.add(list5);
 
   var list6 = BankingQuesAnsModel(
-      "Money return when you go shopping with credit card of Cy Captial Bank ?");
+      "Money return when you go shopping with credit card of Kroell Bank ?");
   list.add(list6);
 
   return list;

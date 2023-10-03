@@ -4,7 +4,7 @@
     "type": "AAPT_FRIENDLY_MERGED_MANIFESTS",
     "kind": "Directory"
   },
-  "applicationId": "free_flutter_banking_ui_kits",
+  "applicationId": "dev.fluttercommunity.plus.connectivity",
   "variantName": "debug",
   "elements": [
     {

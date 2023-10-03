@@ -1,4 +1,4 @@
-#Tue Oct 03 00:23:46 CEST 2023
+#Tue Oct 03 10:33:08 CEST 2023
 base.0=C\:\\Users\\Administrator\\source\\repos\\kroell_bank\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Administrator\\source\\repos\\kroell_bank\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\Administrator\\source\\repos\\kroell_bank\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
