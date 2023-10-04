@@ -20,7 +20,7 @@ class _BankingDashboardState extends State<BankingDashboard> {
   final pages = [
     BankingHome1(username: '',),
     BankingTransfer(),
-    BankingMenu(),
+    BankingMenu(username: '',),
   ];
 
   @override

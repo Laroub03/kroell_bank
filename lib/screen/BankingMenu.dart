@@ -6,7 +6,7 @@ import '../utils/BankingImages.dart';
 import '../utils/BankingStrings.dart';
 import '../utils/BankingWidget.dart';
 import 'package:nb_utils/nb_utils.dart';
-
+import 'BankingLogin.dart';
 import 'BankingChangePasword.dart';
 import 'BankingContact.dart';
 import 'BankingQuestionAnswer.dart';
@@ -14,6 +14,10 @@ import 'BankingTermsCondition.dart';
 
 class BankingMenu extends StatefulWidget {
   static var tag = "/BankingMenu";
+
+  final String username;
+
+  const BankingMenu({required this.username});
 
   @override
   _BankingMenuState createState() => _BankingMenuState();
@@ -48,7 +52,7 @@ class _BankingMenuState extends State<BankingMenu> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         5.height,
-                        Text("Manish Dayma",
+                        Text("${UserData().username}",
                             style: boldTextStyle(
                                 color: Banking_TextColorPrimary, size: 18)),
                         5.height,

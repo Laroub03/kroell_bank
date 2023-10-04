@@ -13,6 +13,34 @@ class BankingChangePassword extends StatefulWidget {
 }
 
 class _BankingChangePasswordState extends State<BankingChangePassword> {
+  final TextEditingController _oldPasswordController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+
+  void changePassword() async {
+    String oldPassword = _oldPasswordController.text;
+    String newPassword = _newPasswordController.text;
+
+    // Validate if the fields are not empty
+    if (oldPassword.isEmpty || newPassword.isEmpty) {
+        toasty(context, 'Please fill in all fields');
+        return;
+    }
+
+    // Here, you'd typically make an API call to validate the old password 
+    // and then change to the new password. For this example, I'll use a 
+    // dummy logic.
+
+    if (oldPassword == "currentPasswordFromServer") { // Replace with actual validation
+        // Update the password on the server with newPassword
+        // ...
+
+        toasty(context, 'Password Successfully Changed');
+        finish(context);
+    } else {
+        toasty(context, 'Old password is incorrect');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,18 +72,24 @@ class _BankingChangePasswordState extends State<BankingChangePassword> {
                   ),
                   20.height,
                   EditText(
-                      text: "Old Password", isPassword: true, isSecure: true),
+                      controller: _oldPasswordController,
+                      text: "Old Password", 
+                      isPassword: true, 
+                      isSecure: true
+                  ),
                   16.height,
                   EditText(
-                      text: "New Password", isPassword: true, isSecure: true),
+                      controller: _newPasswordController,
+                      text: "New Password", 
+                      isPassword: true, 
+                      isSecure: true
+                  ),
                   16.height,
                   40.height,
                   BankingButton(
                       textContent: Banking_lbl_Confirm,
-                      onPressed: () {
-                        toasty(context, 'Password Successfully Changed');
-                        finish(context);
-                      }),
+                      onPressed: changePassword,
+                  ),
                 ],
               ),
             ),

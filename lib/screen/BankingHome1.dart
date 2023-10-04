@@ -13,7 +13,7 @@ class BankingHome1 extends StatefulWidget {
 
   final String username;
 
-  BankingHome1({required this.username});
+  const BankingHome1({required this.username});
 
   @override
   BankingHome1State createState() => BankingHome1State();
