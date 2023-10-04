@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingColors.dart';
 import 'BankingContants.dart';
+import 'package:kroell_bank/screen/BankingLogin.dart';
+import 'package:kroell_bank/screen/BankingRegister.dart';
 
 // ignore: must_be_immutable
 class BankingButton extends StatefulWidget {
@@ -36,7 +38,7 @@ class BankingButtonState extends State<BankingButton> {
           widget.textContent.toUpperCase(),
           style: primaryTextStyle(
               color:
-                  widget.isStroked ? Banking_Primary : Banking_whitePureColor,
+                  widget.isStroked ? Banking_Primary : Banking_blackColor,
               size: 18,
               fontFamily: fontMedium),
         ).center(),

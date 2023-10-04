@@ -2,56 +2,22 @@ import 'package:flutter/material.dart';
 import 'screen/BankingSignin.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kroell Bank',
+      title: 'Banking UI Flutter',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  String message = '';
-
-  // Function to navigate to the Login and Registration screen
-  void navigateToLoginRegisterScreen() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => BankingSignIn()),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('KroellBank'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: navigateToLoginRegisterScreen,
-              child: Text('Login / Register'),
-            ),
-            SizedBox(height: 20),
-            Text(message),
-          ],
-        ),
-      ),
+      home: BankingSignIn(),
     );
   }
 }

@@ -42,9 +42,6 @@ class _BankingMenuState extends State<BankingMenu> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    CircleAvatar(
-                        backgroundImage: AssetImage(Banking_ic_user1),
-                        radius: 40),
                     10.width,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

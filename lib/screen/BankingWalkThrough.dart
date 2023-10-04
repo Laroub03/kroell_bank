@@ -85,7 +85,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
               alignment: Alignment.center,
               child: DotsIndicator(
                   dotsCount: 3,
-                  position: currentIndexPage.toDouble(),
+                  position: currentIndexPage,
                   decorator: DotsDecorator(
                       color: Banking_view_color, activeColor: Banking_Primary)),
             ),

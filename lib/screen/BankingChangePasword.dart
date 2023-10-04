@@ -29,7 +29,7 @@ class _BankingChangePasswordState extends State<BankingChangePassword> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Icon(Icons.chevron_left,
+                      const Icon(Icons.chevron_left,
                               size: 25, color: Banking_blackColor)
                           .onTap(
                         () {

@@ -1,18 +1,19 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../model/BankingModel.dart';
 import '../utils/BankingColors.dart';
 import '../utils/BankingContants.dart';
 import '../utils/BankingDataGenerator.dart';
-import '../utils/BankingImages.dart';
 import '../utils/BankingWidget.dart';
+import 'BankingLogin.dart';
 
 class BankingHome1 extends StatefulWidget {
   static String tag = '/BankingHome1';
+
+  final String username;
+
+  BankingHome1({required this.username});
 
   @override
   BankingHome1State createState() => BankingHome1State();
@@ -54,15 +55,12 @@ class BankingHome1State extends State<BankingHome1> {
                 margin: EdgeInsets.only(bottom: 8, top: 8),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                        backgroundImage: AssetImage(Banking_ic_user1),
-                        radius: 24),
                     10.width,
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Hello,Manish",
+                        Text("Hello, ${UserData().username}",
                             style: primaryTextStyle(
                                 color: Banking_TextColorWhite,
                                 size: 16,
@@ -135,50 +133,6 @@ class BankingHome1State extends State<BankingHome1> {
                               ),
                             ),
                           ),
-                        //   10.height,
-                        //   Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     // children: [
-                        //     //   Container(
-                        //     //     padding: EdgeInsets.only(top: 8, bottom: 8),
-                        //     //     decoration: boxDecorationWithRoundedCorners(
-                        //     //         backgroundColor: Banking_Primary,
-                        //     //         borderRadius: BorderRadius.circular(8)),
-                        //     //     child: Row(
-                        //     //       mainAxisAlignment: MainAxisAlignment.center,
-                        //     //       children: [
-                        //     //         Icon(Icons.payment,
-                        //     //             color: Banking_TextColorWhite,
-                        //     //             size: 24),
-                        //     //         10.width,
-                        //     //         Text('Payment',
-                        //     //             style: primaryTextStyle(
-                        //     //                 size: 16,
-                        //     //                 color: Banking_TextColorWhite)),
-                        //     //       ],
-                        //     //     ),
-                        //     //   ).expand(),
-                        //     //   10.width,
-                        //     //   Container(
-                        //     //     padding: EdgeInsets.only(top: 8, bottom: 8),
-                        //     //     decoration: boxDecorationWithRoundedCorners(
-                        //     //         backgroundColor: Banking_Primary,
-                        //     //         borderRadius: BorderRadius.circular(8)),
-                        //     //     child: Row(
-                        //     //       mainAxisAlignment: MainAxisAlignment.center,
-                        //     //       children: [
-                        //     //         SvgPicture.asset(Banking_ic_Transfer,
-                        //     //             color: Banking_TextColorWhite),
-                        //     //         10.width,
-                        //     //         Text('Transfer',
-                        //     //             style: primaryTextStyle(
-                        //     //                 size: 16,
-                        //     //                 color: Banking_TextColorWhite)),
-                        //     //       ],
-                        //     //     ),
-                        //     //   ).expand(),
-                        //     // ],
-                        //   ).paddingAll(1)
                          ],
                       ),
                     )

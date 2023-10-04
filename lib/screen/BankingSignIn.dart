@@ -5,66 +5,41 @@ import '../utils/BankingColors.dart';
 import '../utils/BankingImages.dart';
 import '../utils/BankingStrings.dart';
 import '../utils/BankingWidget.dart';
+import 'package:kroell_bank/services/http_client_service.dart';
+import 'dart:convert';
+import 'BankingRegister.dart';
+import 'BankingLogin.dart';
 
-class BankingSignIn extends StatefulWidget {
-  static var tag = "/BankingSignIn";
-
-  @override
-  _BankingSignInState createState() => _BankingSignInState();
-}
-
-class _BankingSignInState extends State<BankingSignIn> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class BankingSignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Text(Banking_lbl_SignIn, style: boldTextStyle(size: 30)),
-                EditText(text: "Phone", isPassword: false),
-                8.height,
-                EditText(text: "Password", isPassword: true, isSecure: true),            
-                BankingButton(
-                  textContent: Banking_lbl_SignIn,
-                  onPressed: () {
-                    finish(context);
-                    BankingDashboard().launch(context);
-                  },
-                ),
-                16.height,
-                Column(
-                  children: [
-                    Text(Banking_lbl_Login_with_FaceID,
-                            style: primaryTextStyle(
-                                size: 16, color: Banking_TextColorSecondary))
-                        .onTap(() {}),
-                    16.height,
-                    Image.asset(Banking_ic_face_id,
-                        color: Banking_Primary, height: 40, width: 40),
-                  ],
-                ).center(),
-              ],
-            ).center(),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(Banking_lbl_app_Name.toUpperCase(),
-                style: primaryTextStyle(
-                    size: 16, color: Banking_TextColorSecondary)),
-          ).paddingBottom(16),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BankingRegister()),
+                );
+              },
+              child: Text('Register'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => BankingLogin()),
+                );
+              },
+              child: Text('Login'),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
+

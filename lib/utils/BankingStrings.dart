@@ -6,9 +6,10 @@ const Banking_lbl_Walk3Title = "Saving Online";
 const Banking_lbl_Walk1SubTitle =
     "Each payment process is so simple and hassle-free, and I don not need to be worried about being scammedEach Payment process is so simple and hassle-free";
 const Banking_lbl_Get_Started = "Get Started";
-const Banking_lbl_SignIn = "Sign In";
+const Banking_lbl_Login = "Login";
+const Banking_lbl_Register = "Register";
 const Banking_lbl_Forgot = "Forgot?";
-const Banking_lbl_Login_with_FaceID = "Or Login With Face ID";
+
 const Banking_lbl_Resend = "Resend?";
 const Banking_lbl_Next = "Next";
 const Banking_lbl_Home = "Home";

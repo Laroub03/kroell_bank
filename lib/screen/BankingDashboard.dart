@@ -18,7 +18,7 @@ class BankingDashboard extends StatefulWidget {
 class _BankingDashboardState extends State<BankingDashboard> {
   var selectedIndex = 0;
   final pages = [
-    BankingHome1(),
+    BankingHome1(username: '',),
     BankingTransfer(),
     BankingMenu(),
   ];
