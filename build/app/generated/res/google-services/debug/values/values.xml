@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">239491669163</string>
+    <string name="google_api_key" translatable="false">AIzaSyDkFqalHWsDwqZFY_AVrP4PsVu6wMqWeN4</string>
+    <string name="google_app_id" translatable="false">1:239491669163:android:f8d637561da3c23a922bee</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDkFqalHWsDwqZFY_AVrP4PsVu6wMqWeN4</string>
+    <string name="google_storage_bucket" translatable="false">kroell-bank-messaging.appspot.com</string>
+    <string name="project_id" translatable="false">kroell-bank-messaging</string>
+</resources>

@@ -1,4 +1,4 @@
-free_flutter_banking_ui_kits
+dev.fluttercommunity.plus.connectivity
 attr activityAction
 attr activityName
 attr alpha

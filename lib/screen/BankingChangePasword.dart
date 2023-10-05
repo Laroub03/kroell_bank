@@ -72,14 +72,14 @@ class _BankingChangePasswordState extends State<BankingChangePassword> {
                   ),
                   20.height,
                   EditText(
-                      controller: _oldPasswordController,
+                      // controller: _oldPasswordController,
                       text: "Old Password", 
                       isPassword: true, 
                       isSecure: true
                   ),
                   16.height,
                   EditText(
-                      controller: _newPasswordController,
+                      // controller: _newPasswordController,
                       text: "New Password", 
                       isPassword: true, 
                       isSecure: true

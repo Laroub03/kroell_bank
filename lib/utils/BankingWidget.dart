@@ -145,7 +145,7 @@ class EditText extends StatefulWidget {
     var this.isSecure = false,
     var this.text = "",
     var this.mController,
-    var this.maxLine = 1, required TextEditingController controller,
+    var this.maxLine = 1,
   });
 
   @override
