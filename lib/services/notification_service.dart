@@ -27,7 +27,7 @@ class NotificationService {
   }
 
 void firebaseInit() {
-    FirebaseMessaging.instance.subscribeToTopic("images_completed");
+    FirebaseMessaging.instance.subscribeToTopic("transfer_completed");
 
     FirebaseMessaging.onMessage.listen((message) {
       RemoteNotification? notification = message.notification;
@@ -105,7 +105,6 @@ void firebaseInit() {
       importance: Importance.max,
       showBadge: true,
       playSound: true,
-      //sound: const RawResourceAndroidNotificationSound('jetsons_doorbell')
     );
 
     AndroidNotificationDetails androidNotificationDetails =
@@ -116,6 +115,7 @@ void firebaseInit() {
             priority: Priority.high,
             playSound: true,
             ticker: 'ticker',
+            icon: 'notification_icon',
             sound: channel.sound
             //     sound: RawResourceAndroidNotificationSound('jetsons_doorbell')
             //  icon: largeIconPath
