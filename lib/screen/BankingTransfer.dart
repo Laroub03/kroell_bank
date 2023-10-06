@@ -61,56 +61,6 @@ class _BankingTransferState extends State<BankingTransfer> {
                   children: [
                     Image.asset(Banking_ic_CardImage,
                         fit: BoxFit.cover, height: 200),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Manish Dayma",
-                                    style: boldTextStyle(
-                                        color: Banking_whitePureColor,
-                                        size: 18,
-                                        fontFamily: fontMedium))
-                                .paddingOnly(
-                                    top: spacing_large,
-                                    left: spacing_standard_new),
-                            Text(Banking_lbl_app_Name,
-                                    style: boldTextStyle(
-                                        color: Banking_whitePureColor,
-                                        size: 16,
-                                        fontFamily: fontMedium))
-                                .paddingOnly(
-                                    top: spacing_large,
-                                    right: spacing_standard_new)
-                          ],
-                        ),
-                        Text("The Same Bank",
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                top: spacing_large, left: spacing_standard_new),
-                        Text('1121 *** ** *** 5555',
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                left: spacing_standard_new,
-                                top: spacing_control),
-                        Text("\$" + "12,500",
-                                style: boldTextStyle(
-                                    color: Banking_whitePureColor,
-                                    size: 18,
-                                    fontFamily: fontMedium))
-                            .paddingOnly(
-                                top: spacing_standard,
-                                left: spacing_standard_new),
-                      ],
-                    ),
-                    10.height,
                   ],
                 ),
               ).visible(isSwitch == true),
@@ -119,58 +69,6 @@ class _BankingTransferState extends State<BankingTransfer> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  20.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Choose Bank Name",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Row(
-                        children: [
-                          Text("The Same Bank",
-                              style: primaryTextStyle(
-                                  color: Banking_TextColorPrimary,
-                                  size: 16,
-                                  fontFamily: fontRegular)),
-                          Icon(Icons.keyboard_arrow_right,
-                              size: 30, color: Banking_greyColor),
-                        ],
-                      ).onTap(
-                        () {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) => CustomDialog(),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  20.height,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Choose Beneficiery",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Row(
-                        children: [
-                          Text("John Smith",
-                              style: primaryTextStyle(
-                                  color: Banking_TextColorPrimary,
-                                  size: 16,
-                                  fontFamily: fontRegular)),
-                          Icon(Icons.keyboard_arrow_right,
-                              size: 30, color: Banking_greyColor),
-                        ],
-                      ),
-                    ],
-                  ),
-                  20.height,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -190,81 +88,12 @@ class _BankingTransferState extends State<BankingTransfer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Bank",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text(Banking_lbl_app_Name,
-                          style: primaryTextStyle(
-                              color: Banking_TextColorPrimary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                    ],
-                  ),
-                  Divider(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Branch",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text("Ahmedabad",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorPrimary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                    ],
-                  ),
-                  Divider(height: 24),
-                  Text("Transfer Info",
-                      style: primaryTextStyle(
-                          color: Banking_TextColorSecondary,
-                          size: 14,
-                          fontFamily: fontRegular)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
                       Text("Amount",
                           style: primaryTextStyle(
                               color: Banking_TextColorSecondary,
                               size: 16,
                               fontFamily: fontRegular)),
                       Text("\$1000",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorPrimary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                    ],
-                  ),
-                  Divider(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Message",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text("Rental Car Fee",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorPrimary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                    ],
-                  ),
-                  Divider(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Fee Transaction",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text("\$10",
                           style: primaryTextStyle(
                               color: Banking_TextColorPrimary,
                               size: 16,
