@@ -11,6 +11,8 @@ import 'BankingTransfer.dart';
 class BankingDashboard extends StatefulWidget {
   static var tag = "/BankingDashboard";
 
+  const BankingDashboard({Key? key}) : super(key: key);
+
   @override
   _BankingDashboardState createState() => _BankingDashboardState();
 }
@@ -18,9 +20,9 @@ class BankingDashboard extends StatefulWidget {
 class _BankingDashboardState extends State<BankingDashboard> {
   var selectedIndex = 0;
   final pages = [
-    BankingHome1(username: '',),
+    const BankingHome1(username: '',),
     BankingTransfer(),
-    BankingMenu(username: '',),
+    const BankingMenu(username: '',),
   ];
 
   @override
@@ -43,7 +45,7 @@ class _BankingDashboardState extends State<BankingDashboard> {
         bottomNavigationBar: BankingBottomNavigationBar(
           selectedItemColor: Banking_Primary,
           unselectedItemColor: Banking_greyColor.withOpacity(0.5),
-          items: <BankingBottomNavigationBarItem>[
+          items: const <BankingBottomNavigationBarItem>[
             BankingBottomNavigationBarItem(
                 icon: Banking_ic_Home, title: Text(Banking_lbl_Home)),
             BankingBottomNavigationBarItem(
@@ -54,7 +56,7 @@ class _BankingDashboardState extends State<BankingDashboard> {
           currentIndex: selectedIndex,
           unselectedIconTheme: IconThemeData(
               color: Banking_greyColor.withOpacity(0.5), size: 28),
-          selectedIconTheme: IconThemeData(color: Banking_Primary, size: 28),
+          selectedIconTheme: const IconThemeData(color: Banking_Primary, size: 28),
           onTap: _onItemTapped,
           type: BankingBottomNavigationBarType.fixed,
         ),

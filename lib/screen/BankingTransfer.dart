@@ -11,6 +11,8 @@ import '../utils/BankingWidget.dart';
 class BankingTransfer extends StatefulWidget {
   static var tag = "/BankingTransfer";
 
+  const BankingTransfer({Key? key}) : super(key: key);
+
   @override
   _BankingTransferState createState() => _BankingTransferState();
 }
@@ -22,7 +24,7 @@ class _BankingTransferState extends State<BankingTransfer> {
 
   void tappedConfirm() {
     if (tapCount != 1) {
-      BankingTransferSuccessful().launch(context);
+      const BankingTransferSuccessful().launch(context);
     }
   }
 
@@ -31,7 +33,7 @@ class _BankingTransferState extends State<BankingTransfer> {
     return Scaffold(
       backgroundColor: Banking_app_Background,
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,7 +57,7 @@ class _BankingTransferState extends State<BankingTransfer> {
               16.height,
               BankingSliderWidget().visible(isSwitch == false),
               Container(
-                margin: EdgeInsets.only(
+                margin: const EdgeInsets.only(
                     left: spacing_standard_new, right: spacing_standard_new),
                 child: Stack(
                   children: [
@@ -65,7 +67,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                 ),
               ).visible(isSwitch == true),
               16.height,
-              Divider(),
+              const Divider(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -84,7 +86,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                               fontFamily: fontRegular)),
                     ],
                   ),
-                  Divider(height: 24),
+                  const Divider(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -100,7 +102,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                               fontFamily: fontRegular)),
                     ],
                   ),
-                  Divider(height: 24),
+                  const Divider(height: 24),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -140,7 +142,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                       ),
                     ],
                   ).visible(isGetOtp == false),
-                  Divider(height: 24),
+                  const Divider(height: 24),
                   16.height,
                   BankingButton(
                       textContent: isGetOtp == true
@@ -167,6 +169,8 @@ class _BankingTransferState extends State<BankingTransfer> {
 }
 
 class CustomDialog extends StatelessWidget {
+  const CustomDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -180,7 +184,7 @@ class CustomDialog extends StatelessWidget {
 
 dialogContent(BuildContext context) {
   return Container(
-    padding: EdgeInsets.fromLTRB(8, 16, 8, 16),
+    padding: const EdgeInsets.fromLTRB(8, 16, 8, 16),
     decoration: boxDecorationWithRoundedCorners(
         borderRadius: BorderRadius.circular(10),
         backgroundColor: Banking_whitePureColor),

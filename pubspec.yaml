@@ -40,6 +40,8 @@ dependencies:
   dots_indicator:
   firebase_core: ^2.17.0
   flutter_local_notifications: ^15.1.2
+  vector_math: ^2.1.4
+  shared_preferences: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -65,8 +67,8 @@ flutter:
   assets:
     - fonts/
     - images/banking/
-    - assets/fluttertest+4-client.pem
-    - assets/fluttertest+4-client-key.pem
+    - assets/localhost-client+4.pem
+    - assets/localhost-client+4-key.pem
     - assets/rootCA.pem
 
   # To add assets to your application, add an assets section, like this:

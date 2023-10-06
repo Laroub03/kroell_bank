@@ -27,7 +27,6 @@ class UserData {
   String? username;
 }
 
-
 class _BankingLoginState extends State<BankingLogin> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -37,11 +36,11 @@ class _BankingLoginState extends State<BankingLogin> {
   // Function to perform user login
   Future<void> login() async {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
-    setState(() {
-      message = "Username or password cannot be blank. Please try again!";
-    });
-    return;
-  }
+      setState(() {
+        message = "Username or password cannot be blank. Please try again!";
+      });
+      return;
+    }
 
     try {
       final httpClient = await _httpClientService.getHttpClient();
@@ -64,7 +63,30 @@ class _BankingLoginState extends State<BankingLogin> {
 
       if (response.statusCode == 200) {
         // Login successful
-        final responseBody = await response.transform(utf8.decoder).join();
+        var responseBody = await response.transform(utf8.decoder).join();
+
+        final data = json.decode(responseBody);
+        final token = data['jwtToken'];
+        final accountId = data['Account_Id'];
+
+        // Store token and account ID in shared preferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+        await prefs.setString('account_id', accountId);
+
+
+        //example of getting them from the shared prefrences storage
+        //Future<void> someFunction() async {
+        //final prefs = await SharedPreferences.getInstance();
+        //final token = prefs.getString('token');
+        //final account_Id = prefs.getString('account_id');
+
+        //if (token != null && accountId != null) {
+        // Use token and account_Id as needed
+        //} else {
+        // Token or account ID is not available; handle this case accordingly
+        //}
+        //}
 
         setState(() {
           message = 'Login successful';
@@ -79,29 +101,30 @@ class _BankingLoginState extends State<BankingLogin> {
       } else {
         // Login failed
         final responseBody = await response.transform(utf8.decoder).join();
-        print('Login Failed - Response Status Code: ${response.statusCode}');
-        print('Login Failed - Response Body: $responseBody');
+        debugPrint(
+            'Login Failed - Response Status Code: ${response.statusCode}');
+        debugPrint('Login Failed - Response Body: $responseBody');
         setState(() {
           message = 'Login failed';
         });
       }
     } catch (error) {
       // Handle any errors that occur during login
-      print('Login Error: $error');
+      debugPrint('Login Error: $error');
       setState(() {
         message = 'Error: $error';
       });
     }
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Banking_app_Background,
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,21 +148,18 @@ class _BankingLoginState extends State<BankingLogin> {
                   ),
                   20.height,
                   EditText(
-                    text: "Username", 
-                    isPassword: false,
-                    mController: _usernameController
-                    ),
+                      text: "Username",
+                      isPassword: false,
+                      mController: _usernameController),
                   16.height,
                   EditText(
-                    text: "Password", 
-                    isPassword: true, 
-                    isSecure: true,
-                    mController: _passwordController
-                    ),
+                      text: "Password",
+                      isPassword: true,
+                      isSecure: true,
+                      mController: _passwordController),
                   20.height,
                   BankingButton(
-                      textContent: Banking_lbl_Login,
-                      onPressed: login),
+                      textContent: Banking_lbl_Login, onPressed: login),
                   Text(message),
                 ],
               ),

@@ -8,6 +8,8 @@ import '../utils/BankingStrings.dart';
 class BankingContact extends StatefulWidget {
   static var tag = "/BankingContact";
 
+  const BankingContact({Key? key}) : super(key: key);
+
   @override
   _BankingContactState createState() => _BankingContactState();
 }
@@ -18,7 +20,7 @@ class _BankingContactState extends State<BankingContact> {
     return Scaffold(
       backgroundColor: Banking_app_Background,
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +29,7 @@ class _BankingContactState extends State<BankingContact> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
+                  const Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
                       .onTap(
                     () {
                       finish(context);
@@ -44,7 +46,7 @@ class _BankingContactState extends State<BankingContact> {
                 decoration: boxDecorationWithShadow(
                     backgroundColor: Banking_whitePureColor,
                     borderRadius: BorderRadius.circular(10)),
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -111,7 +113,7 @@ class _BankingContactState extends State<BankingContact> {
                 decoration: boxDecorationWithShadow(
                     backgroundColor: Banking_whitePureColor,
                     borderRadius: BorderRadius.circular(10)),
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

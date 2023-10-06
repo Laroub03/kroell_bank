@@ -11,6 +11,8 @@ import 'BankingRegister.dart';
 import 'BankingLogin.dart';
 
 class BankingSignIn extends StatelessWidget {
+  const BankingSignIn({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +27,7 @@ class BankingSignIn extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => BankingRegister()),
                 );
               },
-              child: Text('Register'),
+              child: const Text('Register'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -34,7 +36,7 @@ class BankingSignIn extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => BankingLogin()),
                 );
               },
-              child: Text('Login'),
+              child: const Text('Login'),
             ),
           ],
         ),

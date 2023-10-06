@@ -49,10 +49,10 @@ class BankingHome1State extends State<BankingHome1> {
               automaticallyImplyLeading: false,
               backgroundColor:
                   innerBoxIsScrolled ? Banking_Primary : Banking_app_Background,
-              actionsIconTheme: IconThemeData(opacity: 0.0),
+              actionsIconTheme: const IconThemeData(opacity: 0.0),
               title: Container(
-                padding: EdgeInsets.fromLTRB(16, 42, 16, 32),
-                margin: EdgeInsets.only(bottom: 8, top: 8),
+                padding: const EdgeInsets.fromLTRB(16, 42, 16, 32),
+                margin: const EdgeInsets.only(bottom: 8, top: 8),
                 child: Row(
                   children: [
                     10.width,
@@ -72,7 +72,7 @@ class BankingHome1State extends State<BankingHome1> {
                                 fontFamily: fontRegular)),
                       ],
                     ).expand(),
-                    Icon(Icons.notifications,
+                    const Icon(Icons.notifications,
                         size: 30, color: Banking_whitePureColor)
                   ],
                 ),
@@ -82,7 +82,7 @@ class BankingHome1State extends State<BankingHome1> {
                   children: [
                     Container(
                       height: 250,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.bottomLeft,
                             end: Alignment.topLeft,
@@ -90,8 +90,8 @@ class BankingHome1State extends State<BankingHome1> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(16, 150, 16, 8),
-                      padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                      margin: const EdgeInsets.fromLTRB(16, 150, 16, 8),
+                      padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
                       decoration: boxDecorationWithRoundedCorners(
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: defaultBoxShadow()),
@@ -125,7 +125,7 @@ class BankingHome1State extends State<BankingHome1> {
                             child: DotsIndicator(
                               dotsCount: 3,
                               position: currentIndexPage.toInt(),
-                              decorator: DotsDecorator(
+                              decorator: const DotsDecorator(
                                 size: Size.square(8.0),
                                 activeSize: Size.square(8.0),
                                 color: Banking_view_color,
@@ -144,7 +144,7 @@ class BankingHome1State extends State<BankingHome1> {
         },
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             color: Banking_app_Background,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,11 +168,11 @@ class BankingHome1State extends State<BankingHome1> {
                   scrollDirection: Axis.vertical,
                   itemCount: mList1.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(top: 8, bottom: 8),
                       decoration: boxDecorationRoundedWithShadow(8,
                           backgroundColor: Banking_whitePureColor,
                           spreadRadius: 0,
@@ -203,17 +203,17 @@ class BankingHome1State extends State<BankingHome1> {
                         size: 16,
                         color: Banking_TextColorSecondary,
                         fontFamily: fontRegular)),
-                Divider(),
+                const Divider(),
                 ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: 15,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     BankingHomeModel2 data = mList2[index % mList2.length];
                     return Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(top: 8, bottom: 8),
                       decoration: boxDecorationRoundedWithShadow(8,
                           backgroundColor: Banking_whitePureColor,
                           spreadRadius: 0,
