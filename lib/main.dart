@@ -5,16 +5,21 @@ import 'package:flutter/material.dart';
 import 'screen/BankingSignin.dart';
 import 'services/notification_service.dart';
 
+
+
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
+  if(!kIsWeb) {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    FirebaseMessaging.onBackgroundMessage(_backgroundHandler);
 
-  NotificationService notificationService = NotificationService();
-  if (kDebugMode) {
-    print("token: ${await notificationService.getDeviceToken()}");
+    NotificationService notificationService = NotificationService();
+    if (kDebugMode) {
+      print("token: ${await notificationService.getDeviceToken()}");
+    }
+
   }
-
+  
   runApp(const MyApp());
 }
 

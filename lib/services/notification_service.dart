@@ -1,6 +1,4 @@
-
 import 'dart:io';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -28,7 +26,7 @@ class NotificationService {
     _showNotification(message);
   }
 
-  void firebaseInit() {
+void firebaseInit() {
     FirebaseMessaging.instance.subscribeToTopic("images_completed");
 
     FirebaseMessaging.onMessage.listen((message) {
@@ -42,16 +40,19 @@ class NotificationService {
         print('data:${message.data.toString()}');
       }
 
-      if (Platform.isIOS) {
+
+      if (!kIsWeb && Platform.isIOS) {
         _forgroundMessage();
       }
 
-      if (Platform.isAndroid) {
+      if (!kIsWeb && Platform.isAndroid) {
         _initLocalNotifications(message);
         _showNotification(message);
       }
+      
     });
-  }
+}
+
 
   void requestNotificationPermission() async {
     NotificationSettings settings =
