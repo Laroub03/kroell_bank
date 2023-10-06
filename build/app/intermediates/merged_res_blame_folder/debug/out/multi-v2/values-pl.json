@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.kroell_bank.app-mergeDebugResources-15:/values-pl/values-pl.xml",
+            "outputFile": "com.example.kroell_bank.app-mergeDebugResources-16:/values-pl/values-pl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-3\\f253648b0be692c533908993735bbd2e\\transformed\\jetified-play-services-base-18.0.1\\res\\values-pl\\values.xml",

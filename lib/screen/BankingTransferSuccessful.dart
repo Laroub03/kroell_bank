@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../utils/BankingColors.dart';
@@ -5,6 +6,7 @@ import '../utils/BankingContants.dart';
 import '../utils/BankingImages.dart';
 import '../utils/BankingStrings.dart';
 import '../utils/BankingWidget.dart';
+import 'package:kroell_bank/services/notification_service.dart';
 
 class BankingTransferSuccessful extends StatefulWidget {
   static var tag = "/BankingTransferSuccessful";
@@ -15,6 +17,31 @@ class BankingTransferSuccessful extends StatefulWidget {
 }
 
 class _BankingTransferSuccessfulState extends State<BankingTransferSuccessful> {
+
+  final NotificationService _notificationService = NotificationService();
+
+  @override
+  void initState() {
+    super.initState();
+    _showTransferSuccessNotification();
+  }
+
+  _showTransferSuccessNotification() {
+    // Create a RemoteMessage for the local notification
+    RemoteMessage message = const RemoteMessage(
+      notification: RemoteNotification(
+        title: "Transfer Successful",
+        body: "Your bank transfer was successful!",
+        android: AndroidNotification(
+          channelId: "transfer_success_channel", // You can define a new channel ID for this
+        ),
+      ),
+    );
+
+    _notificationService.showTransferSuccessNotification(message);
+  }
+
+ 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

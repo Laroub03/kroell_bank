@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.kroell_bank.app-mergeDebugResources-15:/values-or/values-or.xml",
+            "outputFile": "com.example.kroell_bank.app-mergeDebugResources-16:/values-or/values-or.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-3\\cf72013d765e0f69e97cd3b9cbb09800\\transformed\\core-1.6.0\\res\\values-or\\values-or.xml",

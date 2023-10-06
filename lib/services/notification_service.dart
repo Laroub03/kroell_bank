@@ -24,6 +24,10 @@ class NotificationService {
     });
   }
 
+    void showTransferSuccessNotification(RemoteMessage message) {
+    _showNotification(message);
+  }
+
   void firebaseInit() {
     FirebaseMessaging.instance.subscribeToTopic("images_completed");
 
