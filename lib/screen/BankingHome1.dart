@@ -71,9 +71,7 @@ class BankingHome1State extends State<BankingHome1> {
                                 size: 16,
                                 fontFamily: fontRegular)),
                       ],
-                    ).expand(),
-                    Icon(Icons.notifications,
-                        size: 30, color: Banking_whitePureColor)
+                    )
                   ],
                 ),
               ),

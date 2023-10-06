@@ -48,7 +48,7 @@ const Banking_lbl_Get_OTP = "Get OTP";
 const Banking_lbl_Confirm_Transfer = "Confirm Transfer";
 const Banking_lbl_Transfer_Successful = "Transfer\nSuccessful";
 const Banking_lbl_Info_Transfer_Successful =
-    "You Have successfully transfered \$1000 \n to John Smith";
+    "The transfer was successful and the receiver \nhas received the specificed amount!";
 const Banking_lbl_Transaction_History = "Transaction History";
 const Banking_lbl_Rate_Info = "Rate \nInformation";
 const Banking_lbl_Branch_Location = "Branch \nLocation";

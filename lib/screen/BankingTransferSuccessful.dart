@@ -63,14 +63,6 @@ class _BankingTransferSuccessfulState extends State<BankingTransferSuccessful> {
                     textAlign: TextAlign.center)
                 .center(),
             8.height,
-            BankingButton(
-                    textContent: Banking_lbl_Transaction_History,
-                    onPressed: () {})
-                .paddingOnly(
-                    top: spacing_standard_new,
-                    left: spacing_standard_new,
-                    right: spacing_standard_new,
-                    bottom: spacing_standard),
           ],
         ),
       ),
