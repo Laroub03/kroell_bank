@@ -9,6 +9,8 @@ import '../utils/BankingStrings.dart';
 class BankingQuestionAnswer extends StatefulWidget {
   static var tag = "/BankingQuestionAnswer";
 
+  const BankingQuestionAnswer({Key? key}) : super(key: key);
+
   @override
   _BankingQuestionAnswerState createState() => _BankingQuestionAnswerState();
 }
@@ -27,7 +29,7 @@ class _BankingQuestionAnswerState extends State<BankingQuestionAnswer> {
     return Scaffold(
       backgroundColor: Banking_app_Background,
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +38,7 @@ class _BankingQuestionAnswerState extends State<BankingQuestionAnswer> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
+                  const Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
                       .onTap(
                     () {
                       finish(context);
@@ -52,7 +54,7 @@ class _BankingQuestionAnswerState extends State<BankingQuestionAnswer> {
                   scrollDirection: Axis.vertical,
                   itemCount: mList.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return Question(mList[index], index);
                   }),
@@ -67,10 +69,10 @@ class _BankingQuestionAnswerState extends State<BankingQuestionAnswer> {
 class Question extends StatefulWidget {
   final BankingQuesAnsModel model;
 
-  Question(this.model, int index);
+  const Question(this.model, int index, {Key? key}) : super(key: key);
 
   @override
-  QuestionState createState() => new QuestionState(model);
+  QuestionState createState() => QuestionState(model);
 }
 
 class QuestionState extends State<Question> {
@@ -90,7 +92,7 @@ class QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 8, bottom: 8),
+      margin: const EdgeInsets.only(top: 8, bottom: 8),
       decoration: boxDecorationWithShadow(
           backgroundColor: Banking_whitePureColor,
           borderRadius: BorderRadius.circular(10),
@@ -99,7 +101,7 @@ class QuestionState extends State<Question> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -137,7 +139,7 @@ class QuestionState extends State<Question> {
           Visibility(
             visible: visibility,
             child: Container(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Text(
                 Banking_lbl_Walk1SubTitle,
                 textAlign: TextAlign.justify,

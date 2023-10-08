@@ -7,6 +7,8 @@ import '../utils/BankingStrings.dart';
 class BankingTermsCondition extends StatefulWidget {
   static var tag = "/BankingTermsCondition";
 
+  const BankingTermsCondition({Key? key}) : super(key: key);
+
   @override
   _BankingTermsConditionState createState() => _BankingTermsConditionState();
 }
@@ -17,7 +19,7 @@ class _BankingTermsConditionState extends State<BankingTermsCondition> {
     return Scaffold(
       backgroundColor: Banking_app_Background,
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +28,7 @@ class _BankingTermsConditionState extends State<BankingTermsCondition> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
+                  const Icon(Icons.chevron_left, size: 30, color: Banking_blackColor)
                       .onTap(
                     () {
                       finish(context);

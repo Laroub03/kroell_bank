@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, use_key_in_widget_constructors, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:kroell_bank/model/BankingModel.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingDashboard.dart';
 import '../utils/BankingColors.dart';
@@ -25,6 +26,7 @@ class UserData {
   UserData._internal();
 
   String? username;
+  BankingCardModel? userCard;
 }
 
 
@@ -72,9 +74,16 @@ class _BankingLoginState extends State<BankingLogin> {
 
         UserData().username = _usernameController.text;
 
+          // Mock user card data
+          UserData().userCard = BankingCardModel(
+            name: _usernameController.text,
+            rs: "12,500",
+            accountNumber: "1121 *** ** *** 1555",
+          );
+
         // Navigate to the BankingDashboard screen upon successful login
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => BankingDashboard()),
+          MaterialPageRoute(builder: (context) => const BankingDashboard()),
         );
       } else {
         // Login failed
@@ -101,7 +110,7 @@ class _BankingLoginState extends State<BankingLogin> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

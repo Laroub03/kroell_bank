@@ -1,3 +1,4 @@
+// Import necessary packages and files
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingTransferSuccessful.dart';
@@ -8,6 +9,7 @@ import '../utils/BankingSlider.dart';
 import '../utils/BankingStrings.dart';
 import '../utils/BankingWidget.dart';
 
+// Create a stateful widget for the banking transfer screen
 class BankingTransfer extends StatefulWidget {
   static var tag = "/BankingTransfer";
 
@@ -16,12 +18,14 @@ class BankingTransfer extends StatefulWidget {
 }
 
 class _BankingTransferState extends State<BankingTransfer> {
-  bool isSwitch = false;
-  bool isGetOtp = false;
-  var tapCount = 0;
+  // Define state variables
+  bool isSwitch = false; // Indicates whether the "Save this Beneficiary" switch is on
+  var tapCount = 0; // Keeps track of how many times the Confirm button is tapped
 
+  // Function to handle the Confirm button tap
   void tappedConfirm() {
     if (tapCount != 1) {
+      // Launch the BankingTransferSuccessful screen if the button is tapped for the first time
       BankingTransferSuccessful().launch(context);
     }
   }
@@ -38,9 +42,7 @@ class _BankingTransferState extends State<BankingTransfer> {
             children: [
               10.height,
               Text(
-                isSwitch == true
-                    ? Banking_lbl_Confirm_Transfer
-                    : Banking_lbl_Transfer,
+                Banking_lbl_Transfer,
                 style: primaryTextStyle(
                     color: Banking_TextColorPrimary,
                     size: 26,
@@ -53,72 +55,46 @@ class _BankingTransferState extends State<BankingTransfer> {
                       size: 14,
                       fontFamily: fontBold)),
               16.height,
-              BankingSliderWidget().visible(isSwitch == false),
-              Container(
-                margin: EdgeInsets.only(
-                    left: spacing_standard_new, right: spacing_standard_new),
-                child: Stack(
-                  children: [
-                    Image.asset(Banking_ic_CardImage,
-                        fit: BoxFit.cover, height: 200),
-                  ],
-                ),
-              ).visible(isSwitch == true),
+              BankingSliderWidget(), // Custom widget for a slider
               16.height,
               Divider(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Account Number",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text("123 456 789",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorPrimary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                    ],
+                  TextField(
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      hintText: "Account Number",
+                      border: InputBorder.none,
+                    ),
+                    style: primaryTextStyle(
+                        color: Banking_TextColorPrimary,
+                        size: 16,
+                        fontFamily: fontRegular),
                   ),
                   Divider(height: 24),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Amount",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 16,
-                              fontFamily: fontRegular)),
-                      Text("\$1000",
+                      Text("\$", style: primaryTextStyle(
+                          color: Banking_TextColorPrimary,
+                          size: 16,
+                          fontFamily: fontRegular)),
+                      Expanded(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            hintText: "Amount",
+                            border: InputBorder.none,
+                          ),
                           style: primaryTextStyle(
                               color: Banking_TextColorPrimary,
                               size: 16,
-                              fontFamily: fontRegular)),
-                    ],
-                  ),
-                  Divider(height: 24),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("A OTP code has been send to your phone",
-                          style: primaryTextStyle(
-                              color: Banking_TextColorSecondary,
-                              size: 14,
-                              fontFamily: fontRegular)),
-                      EditText(text: "Enter OTP", isPassword: false),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Text(Banking_lbl_Resend,
-                                style: primaryTextStyle(
-                                    size: 18, fontFamily: fontRegular))
-                            .onTap(() {}),
+                              fontFamily: fontRegular),
+                        ),
                       ),
                     ],
-                  ).visible(isGetOtp == true),
+                  ),
+                  const Divider(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -139,17 +115,14 @@ class _BankingTransferState extends State<BankingTransfer> {
                         activeColor: Banking_Primary,
                       ),
                     ],
-                  ).visible(isGetOtp == false),
-                  Divider(height: 24),
+                  ),
+                  const Divider(height: 24),
                   16.height,
                   BankingButton(
-                      textContent: isGetOtp == true
-                          ? Banking_lbl_Confirm
-                          : Banking_lbl_Get_OTP,
+                      textContent: Banking_lbl_Confirm,
                       onPressed: () {
                         setState(
                           () {
-                            isGetOtp = true;
                             tapCount = tapCount + 1;
                             tappedConfirm();
                           },
@@ -166,6 +139,7 @@ class _BankingTransferState extends State<BankingTransfer> {
   }
 }
 
+// Custom dialog widget
 class CustomDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -178,6 +152,7 @@ class CustomDialog extends StatelessWidget {
   }
 }
 
+// Function to create the content for the custom dialog
 dialogContent(BuildContext context) {
   return Container(
     padding: EdgeInsets.fromLTRB(8, 16, 8, 16),

@@ -11,6 +11,8 @@ import '../utils/BankingWidget.dart';
 class BankingWalkThrough extends StatefulWidget {
   static var tag = "/BankingWalkThrough";
 
+  const BankingWalkThrough({Key? key}) : super(key: key);
+
   @override
   _BankingWalkThroughState createState() => _BankingWalkThroughState();
 }
@@ -45,7 +47,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
         children: <Widget>[
           Container(
             child: PageView(
-              children: <Widget>[
+              children: const <Widget>[
                 WalkThrough(textContent: Banking_ic_walk1),
                 WalkThrough(textContent: Banking_ic_walk2),
                 WalkThrough(textContent: Banking_ic_walk3),
@@ -61,7 +63,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
             width: context.width(),
             bottom: context.height() * 0.38,
             child: Padding(
-              padding: EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -86,7 +88,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
               child: DotsIndicator(
                   dotsCount: 3,
                   position: currentIndexPage,
-                  decorator: DotsDecorator(
+                  decorator: const DotsDecorator(
                       color: Banking_view_color, activeColor: Banking_Primary)),
             ),
           ),
@@ -94,7 +96,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
             width: context.width(),
             top: context.height() * 0.6,
             child: Padding(
-              padding: EdgeInsets.all(24.0),
+              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +117,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
                     textContent: Banking_lbl_Get_Started,
                     onPressed: () {
                       finish(context);
-                      BankingSignIn().launch(context);
+                      const BankingSignIn().launch(context);
                     },
                   ),
                 ],
@@ -131,7 +133,7 @@ class _BankingWalkThroughState extends State<BankingWalkThrough> {
 class WalkThrough extends StatelessWidget {
   final String textContent;
 
-  WalkThrough({Key? key, required this.textContent}) : super(key: key);
+  const WalkThrough({Key? key, required this.textContent}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

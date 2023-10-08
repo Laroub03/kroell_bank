@@ -10,25 +10,28 @@ import '../utils/BankingStrings.dart';
 class BankingSplash extends StatefulWidget {
   static String tag = '/BankingSplash';
 
+  const BankingSplash({Key? key}) : super(key: key);
+
   @override
   _BankingSplashState createState() => _BankingSplashState();
 }
 
 class _BankingSplashState extends State<BankingSplash> {
+  @override
   void initState() {
     super.initState();
     startTime();
   }
 
   startTime() async {
-    var _duration = Duration(seconds: 2);
-    return Timer(_duration, navigationPage);
+    var duration = const Duration(seconds: 2);
+    return Timer(duration, navigationPage);
   }
 
   void navigationPage() {
     setState(() {
       finish(context);
-      BankingWalkThrough().launch(context);
+      const BankingWalkThrough().launch(context);
     });
   }
 
@@ -38,7 +41,7 @@ class _BankingSplashState extends State<BankingSplash> {
       body: Stack(
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 gradient: LinearGradient(
                     begin: Alignment.bottomLeft,
                     end: Alignment.topLeft,

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingColors.dart';
 import 'BankingContants.dart';
-import 'package:kroell_bank/screen/BankingLogin.dart';
-import 'package:kroell_bank/screen/BankingRegister.dart';
 
 // ignore: must_be_immutable
 class BankingButton extends StatefulWidget {
@@ -15,11 +13,11 @@ class BankingButton extends StatefulWidget {
   var radius = 5.0;
 
   BankingButton(
-      {required this.textContent,
+      {Key? key, required this.textContent,
       required this.onPressed,
       this.isStroked = false,
       this.height = 45.0,
-      this.radius = 5.0});
+      this.radius = 5.0}) : super(key: key);
 
   @override
   BankingButtonState createState() => BankingButtonState();
@@ -32,7 +30,7 @@ class BankingButtonState extends State<BankingButton> {
       onTap: widget.onPressed,
       child: Container(
         height: widget.height,
-        padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+        padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
         alignment: Alignment.center,
         child: Text(
           widget.textContent.toUpperCase(),
@@ -49,7 +47,7 @@ class BankingButtonState extends State<BankingButton> {
 
 Widget bankingOption(var icon, var heading, Color color) {
   return Container(
-    padding: EdgeInsets.fromLTRB(8, 10, 8, 10),
+    padding: const EdgeInsets.fromLTRB(8, 10, 8, 10),
     child: Row(
       children: <Widget>[
         Row(
@@ -61,7 +59,7 @@ Widget bankingOption(var icon, var heading, Color color) {
                     color: Banking_TextColorPrimary, size: 18)),
           ],
         ).expand(),
-        Icon(Icons.keyboard_arrow_right, color: Banking_TextColorSecondary),
+        const Icon(Icons.keyboard_arrow_right, color: Banking_TextColorSecondary),
       ],
     ),
   );
@@ -72,12 +70,12 @@ class TopCard extends StatelessWidget {
   final String acno;
   final String bal;
 
-  TopCard({Key? key, required this.name, required this.acno, required this.bal})
+  const TopCard({Key? key, required this.name, required this.acno, required this.bal})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: context.width(),
       height: context.height(),
       child: Column(
@@ -86,13 +84,13 @@ class TopCard extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Icon(Icons.account_balance_wallet,
+                const Icon(Icons.account_balance_wallet,
                         color: Banking_Primary, size: 30)
                     .paddingOnly(top: 8, left: 8),
                 Text(name, style: primaryTextStyle(size: 18))
                     .paddingOnly(left: 8, top: 8)
                     .expand(),
-                Icon(Icons.info, color: Banking_greyColor, size: 20)
+                const Icon(Icons.info, color: Banking_greyColor, size: 20)
                     .paddingOnly(right: 8)
               ],
             ),
@@ -137,7 +135,7 @@ class EditText extends StatefulWidget {
 
   VoidCallback? onPressed;
 
-  EditText({
+  EditText({Key? key, 
     var this.fontSize = textSizeNormal,
     var this.textColor = Banking_TextColorPrimary,
     var this.fontFamily = fontRegular,
@@ -146,7 +144,7 @@ class EditText extends StatefulWidget {
     var this.text = "",
     var this.mController,
     var this.maxLine = 1,
-  });
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -169,11 +167,11 @@ class EditTextState extends State<EditText> {
               fontFamily: widget.fontFamily),
           decoration: InputDecoration(
             hintText: widget.text,
-            hintStyle: TextStyle(fontSize: textSizeMedium),
-            focusedBorder: UnderlineInputBorder(
+            hintStyle: const TextStyle(fontSize: textSizeMedium),
+            focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Banking_Primary, width: 0.5),
             ),
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: const UnderlineInputBorder(
               borderSide:
                   BorderSide(color: Banking_TextColorSecondary, width: 0.5),
             ),
@@ -189,23 +187,23 @@ class EditTextState extends State<EditText> {
             fontFamily: widget.fontFamily),
         decoration: InputDecoration(
             hintText: widget.text,
-            hintStyle: TextStyle(fontSize: textSizeMedium),
+            hintStyle: const TextStyle(fontSize: textSizeMedium),
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
                   widget.isPassword = !widget.isPassword;
                 });
               },
-              child: new Icon(
+              child: Icon(
                 widget.isPassword ? Icons.visibility : Icons.visibility_off,
                 color: Banking_TextColorSecondary,
               ),
             ),
-            enabledBorder: UnderlineInputBorder(
+            enabledBorder: const UnderlineInputBorder(
               borderSide:
                   BorderSide(color: Banking_TextColorSecondary, width: 0.5),
             ),
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: Banking_Primary, width: 0.5),
             )),
       );
@@ -221,7 +219,7 @@ Widget headerView(var title, double height, BuildContext context) {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Icon(
+            const Icon(
               Icons.chevron_left,
               size: 25,
               color: Banking_blackColor,

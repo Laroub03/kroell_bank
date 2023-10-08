@@ -6,7 +6,6 @@ import 'dart:collection' show Queue;
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
@@ -110,7 +109,7 @@ class BankingBottomNavigationBar extends StatefulWidget {
   /// The color of the unselected [BankingBottomNavigationBarItem.icon] and
   /// [BankingBottomNavigationBarItem.label]s.
   ///
-  /// If null then the [TextTheme.caption]'s color is used.
+  /// If null then the [TextTheme.bodySmall]'s color is used.
   final Color? unselectedItemColor;
 
   /// The size, opacity, and color of the icon in the currently selected
@@ -489,8 +488,12 @@ class _BankingBottomNavigationBarState extends State<BankingBottomNavigationBar>
   static final Animatable<double> _flexTween = Tween<double>(begin: 1.0, end: 1.5);
 
   void _resetState() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     _circles.clear();
 
     _controllers = List<AnimationController>.generate(widget.items.length, (int index) {
@@ -525,8 +528,12 @@ class _BankingBottomNavigationBarState extends State<BankingBottomNavigationBar>
 
   @override
   void dispose() {
-    for (AnimationController controller in _controllers) controller.dispose();
-    for (_Circle circle in _circles) circle.dispose();
+    for (AnimationController controller in _controllers) {
+      controller.dispose();
+    }
+    for (_Circle circle in _circles) {
+      circle.dispose();
+    }
     super.dispose();
   }
 
@@ -616,7 +623,7 @@ class _BankingBottomNavigationBarState extends State<BankingBottomNavigationBar>
     switch (widget.type) {
       case BankingBottomNavigationBarType.fixed:
         colorTween = ColorTween(
-          begin: widget.unselectedItemColor ?? themeData.textTheme.caption!.color,
+          begin: widget.unselectedItemColor ?? themeData.textTheme.bodySmall!.color,
           end: widget.selectedItemColor ?? widget.fixedColor ?? themeColor,
         );
         break;
@@ -783,7 +790,9 @@ class _RadialPainter extends CustomPainter {
     if (textDirection != oldPainter.textDirection) return true;
     if (circles == oldPainter.circles) return false;
     if (circles.length != oldPainter.circles.length) return true;
-    for (int i = 0; i < circles.length; i += 1) if (circles[i] != oldPainter.circles[i]) return true;
+    for (int i = 0; i < circles.length; i += 1) {
+      if (circles[i] != oldPainter.circles[i]) return true;
+    }
     return false;
   }
 

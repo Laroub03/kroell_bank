@@ -1,38 +1,40 @@
+// Import necessary packages and files
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../model/BankingModel.dart';
-import '../utils/BankingColors.dart';
-import '../utils/BankingContants.dart';
-import '../utils/BankingDataGenerator.dart';
-import '../utils/BankingWidget.dart';
+import '../model/BankingModel.dart'; // Import the banking model
+import '../utils/BankingColors.dart'; // Import custom color constants
+import '../utils/BankingContants.dart'; // Import custom constant values
+import '../utils/BankingDataGenerator.dart'; // Import data generator
+import '../utils/BankingWidget.dart'; // Import custom widgets
 import 'BankingLogin.dart';
 
+// Create a stateful widget for the first home screen
 class BankingHome1 extends StatefulWidget {
   static String tag = '/BankingHome1';
 
   final String username;
 
-  const BankingHome1({required this.username});
+  const BankingHome1({Key? key, required this.username}) : super(key: key);
 
   @override
   BankingHome1State createState() => BankingHome1State();
 }
 
 class BankingHome1State extends State<BankingHome1> {
-  int currentIndexPage = 0;
+  int currentIndexPage = 0; // Index of the current page in the PageView
   int? pageLength;
 
-  late List<BankingHomeModel> mList1;
-  late List<BankingHomeModel2> mList2;
+  late List<BankingHomeModel> mList1; // List of banking home data
+  late List<BankingHomeModel2> mList2; // List of secondary banking home data
 
   @override
   void initState() {
     super.initState();
     currentIndexPage = 0;
     pageLength = 3;
-    mList1 = bankingHomeList1();
-    mList2 = bankingHomeList2();
+    mList1 = bankingHomeList1(); // Initialize the first list of data
+    mList2 = bankingHomeList2(); // Initialize the second list of data
   }
 
   @override
@@ -41,6 +43,7 @@ class BankingHome1State extends State<BankingHome1> {
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
+            // SliverAppBar widget for the top app bar
             SliverAppBar(
               expandedHeight: 330,
               floating: false,
@@ -49,10 +52,10 @@ class BankingHome1State extends State<BankingHome1> {
               automaticallyImplyLeading: false,
               backgroundColor:
                   innerBoxIsScrolled ? Banking_Primary : Banking_app_Background,
-              actionsIconTheme: IconThemeData(opacity: 0.0),
+              actionsIconTheme: const IconThemeData(opacity: 0.0),
               title: Container(
-                padding: EdgeInsets.fromLTRB(16, 42, 16, 32),
-                margin: EdgeInsets.only(bottom: 8, top: 8),
+                padding: const EdgeInsets.fromLTRB(16, 42, 16, 32),
+                margin: const EdgeInsets.only(bottom: 8, top: 8),
                 child: Row(
                   children: [
                     10.width,
@@ -60,6 +63,7 @@ class BankingHome1State extends State<BankingHome1> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        // Display user greeting and name
                         Text("Hello, ${UserData().username}",
                             style: primaryTextStyle(
                                 color: Banking_TextColorWhite,
@@ -78,9 +82,10 @@ class BankingHome1State extends State<BankingHome1> {
               flexibleSpace: FlexibleSpaceBar(
                 background: Stack(
                   children: [
+                    // Gradient background for the flexible space
                     Container(
                       height: 250,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         gradient: LinearGradient(
                             begin: Alignment.bottomLeft,
                             end: Alignment.topLeft,
@@ -88,17 +93,18 @@ class BankingHome1State extends State<BankingHome1> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.fromLTRB(16, 150, 16, 8),
-                      padding: EdgeInsets.fromLTRB(4, 0, 4, 0),
+                      margin: const EdgeInsets.fromLTRB(16, 150, 16, 8),
+                      padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
                       decoration: boxDecorationWithRoundedCorners(
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: defaultBoxShadow()),
                       child: Column(
                         children: [
-                          Container(
+                          SizedBox(
                             height: 130,
                             child: PageView(
-                              children: [
+                              children: const [
+                                // Display top cards with account information
                                 TopCard(
                                     name: "Default Account",
                                     acno: "1234567899",
@@ -123,7 +129,7 @@ class BankingHome1State extends State<BankingHome1> {
                             child: DotsIndicator(
                               dotsCount: 3,
                               position: currentIndexPage.toInt(),
-                              decorator: DotsDecorator(
+                              decorator: const DotsDecorator(
                                 size: Size.square(8.0),
                                 activeSize: Size.square(8.0),
                                 color: Banking_view_color,
@@ -131,7 +137,7 @@ class BankingHome1State extends State<BankingHome1> {
                               ),
                             ),
                           ),
-                         ],
+                        ],
                       ),
                     )
                   ],
@@ -142,7 +148,7 @@ class BankingHome1State extends State<BankingHome1> {
         },
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             color: Banking_app_Background,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,6 +156,7 @@ class BankingHome1State extends State<BankingHome1> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Display the section title "Recently Transaction" and date
                     Text("Recently Transaction",
                         style: primaryTextStyle(
                             size: 16,
@@ -166,11 +173,11 @@ class BankingHome1State extends State<BankingHome1> {
                   scrollDirection: Axis.vertical,
                   itemCount: mList1.length,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(top: 8, bottom: 8),
                       decoration: boxDecorationRoundedWithShadow(8,
                           backgroundColor: Banking_whitePureColor,
                           spreadRadius: 0,
@@ -178,6 +185,7 @@ class BankingHome1State extends State<BankingHome1> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          // Display an icon, title, and balance for each transaction
                           Icon(Icons.account_balance_wallet,
                               size: 30, color: mList1[index].color),
                           10.width,
@@ -201,17 +209,17 @@ class BankingHome1State extends State<BankingHome1> {
                         size: 16,
                         color: Banking_TextColorSecondary,
                         fontFamily: fontRegular)),
-                Divider(),
+                const Divider(),
                 ListView.builder(
                   scrollDirection: Axis.vertical,
                   itemCount: 15,
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     BankingHomeModel2 data = mList2[index % mList2.length];
                     return Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(top: 8, bottom: 8),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(top: 8, bottom: 8),
                       decoration: boxDecorationRoundedWithShadow(8,
                           backgroundColor: Banking_whitePureColor,
                           spreadRadius: 0,

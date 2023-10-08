@@ -2,7 +2,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../utils/BankingColors.dart';
-import '../utils/BankingContants.dart';
 import '../utils/BankingImages.dart';
 import '../utils/BankingStrings.dart';
 import '../utils/BankingWidget.dart';
@@ -10,6 +9,8 @@ import 'package:kroell_bank/services/notification_service.dart';
 
 class BankingTransferSuccessful extends StatefulWidget {
   static var tag = "/BankingTransferSuccessful";
+
+  const BankingTransferSuccessful({Key? key}) : super(key: key);
 
   @override
   _BankingTransferSuccessfulState createState() =>

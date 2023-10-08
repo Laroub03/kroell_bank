@@ -17,7 +17,7 @@ class BankingMenu extends StatefulWidget {
 
   final String username;
 
-  const BankingMenu({required this.username});
+  const BankingMenu({Key? key, required this.username}) : super(key: key);
 
   @override
   _BankingMenuState createState() => _BankingMenuState();
@@ -30,7 +30,7 @@ class _BankingMenuState extends State<BankingMenu> {
       backgroundColor: Banking_app_Background,
       body: Container(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -40,7 +40,7 @@ class _BankingMenuState extends State<BankingMenu> {
                       boldTextStyle(color: Banking_TextColorPrimary, size: 35)),
               16.height,
               Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: boxDecorationWithShadow(
                     borderRadius: BorderRadius.circular(10)),
                 child: Row(
@@ -74,7 +74,7 @@ class _BankingMenuState extends State<BankingMenu> {
               ),
               16.height,
               Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: boxDecorationWithShadow(
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
@@ -84,7 +84,7 @@ class _BankingMenuState extends State<BankingMenu> {
                     bankingOption(Banking_ic_security,
                             Banking_lbl_Change_Password, Banking_pinkColor)
                         .onTap(() {
-                      BankingChangePassword().launch(context);
+                      const BankingChangePassword().launch(context);
                     }),
 
                   ],
@@ -92,30 +92,30 @@ class _BankingMenuState extends State<BankingMenu> {
               ),
               16.height,
               Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: boxDecorationWithShadow(
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
                   children: <Widget>[
-                    SizedBox(
+                    const SizedBox(
                       height: spacing_middle,
                     ),
                     bankingOption(Banking_ic_TC, Banking_lbl_Term_Conditions,
                             Banking_greenLightColor)
                         .onTap(() {
-                      BankingTermsCondition().launch(context);
+                      const BankingTermsCondition().launch(context);
                     }),
                     bankingOption(Banking_ic_Question,
                             Banking_lbl_Questions_Answers, Banking_palColor)
                         .onTap(() {
-                      BankingQuestionAnswer().launch(context);
+                      const BankingQuestionAnswer().launch(context);
                     }),
                     bankingOption(Banking_ic_Call, Banking_lbl_Contact,
                             Banking_blueColor)
                         .onTap(() {
-                      BankingContact().launch(context);
+                      const BankingContact().launch(context);
                     }),
-                    SizedBox(
+                    const SizedBox(
                       height: spacing_middle,
                     ),
                   ],
@@ -123,7 +123,7 @@ class _BankingMenuState extends State<BankingMenu> {
               ),
 	      16.height,              
               Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: boxDecorationWithShadow(
                     borderRadius: BorderRadius.circular(10)),
                 child: Column(
@@ -133,7 +133,7 @@ class _BankingMenuState extends State<BankingMenu> {
                         .onTap(() {
                       showDialog(
                         context: context,
-                        builder: (BuildContext context) => CustomDialog(),
+                        builder: (BuildContext context) => const CustomDialog(),
                       );
                     }),
                   ],
@@ -148,6 +148,8 @@ class _BankingMenuState extends State<BankingMenu> {
 }
 
 class CustomDialog extends StatelessWidget {
+  const CustomDialog({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -167,11 +169,11 @@ dialogContent(BuildContext context) {
         color: Colors.white,
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
               color: Colors.black26,
               blurRadius: 10.0,
-              offset: const Offset(0.0, 10.0)),
+              offset: Offset(0.0, 10.0)),
         ],
       ),
       child: Column(
@@ -183,7 +185,7 @@ dialogContent(BuildContext context) {
               .onTap(() {
             finish(context);
           }).paddingOnly(top: 8, bottom: 8),
-          Divider(height: 10, thickness: 1.0, color: Banking_greyColor),
+          const Divider(height: 10, thickness: 1.0, color: Banking_greyColor),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,7 +199,7 @@ dialogContent(BuildContext context) {
                       style: primaryTextStyle(size: 18, color: Banking_Primary))
                   .onTap(() {
                 Navigator.of(context).pop();  // Close the dialog
-                BankingSignIn().launch(context);  // Navigate to login screen
+                const BankingSignIn().launch(context);  // Navigate to login screen
               }).paddingLeft(16)
             ],
           ),

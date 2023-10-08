@@ -33,8 +33,9 @@ class BankingCardModel {
   String? name = "";
   String? bank = "";
   String? rs = "";
+  String? accountNumber;
 
-  BankingCardModel({this.name, this.bank, this.rs});
+  BankingCardModel({this.name, this.bank, this.rs, this.accountNumber});
 }
 
 class BankingPaymentHistoryModel {

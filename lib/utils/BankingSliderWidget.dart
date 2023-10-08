@@ -3,57 +3,57 @@ import 'package:flutter/material.dart';
 
 class BankingCarouselSlider extends StatefulWidget {
   BankingCarouselSlider(
-      {required List<Widget> this.items,
+      {Key? key, required List<Widget> this.items,
       this.height,
-      this.aspectRatio: 16 / 9,
-      this.viewportFraction: 0.8,
-      this.initialPage: 0,
-      int realPage: 10000,
-      this.enableInfiniteScroll: true,
-      this.reverse: false,
-      this.autoPlay: false,
-      this.autoPlayInterval: const Duration(seconds: 4),
+      this.aspectRatio = 16 / 9,
+      this.viewportFraction = 0.8,
+      this.initialPage = 0,
+      int realPage = 10000,
+      this.enableInfiniteScroll = true,
+      this.reverse = false,
+      this.autoPlay = false,
+      this.autoPlayInterval = const Duration(seconds: 4),
       this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-      this.autoPlayCurve: Curves.fastOutSlowIn,
+      this.autoPlayCurve = Curves.fastOutSlowIn,
       this.pauseAutoPlayOnTouch,
       this.enlargeCenterPage = false,
       this.onPageChanged,
       this.scrollPhysics,
-      this.scrollDirection: Axis.horizontal})
-      : this.realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
-        this.itemCount = items.length,
-        this.itemBuilder = null,
-        this.pageController = PageController(
+      this.scrollDirection = Axis.horizontal})
+      : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
+        itemCount = items.length,
+        itemBuilder = null,
+        pageController = PageController(
           viewportFraction: viewportFraction as double,
           initialPage: enableInfiniteScroll ? realPage + (initialPage as int) : initialPage as int,
-        );
+        ), super(key: key);
 
   /// The on demand item builder constructor
   BankingCarouselSlider.builder(
-      {required this.itemCount,
+      {Key? key, required this.itemCount,
       required this.itemBuilder,
       this.height,
-      this.aspectRatio: 16 / 9,
-      this.viewportFraction: 0.8,
-      this.initialPage: 0,
-      int realPage: 10000,
-      this.enableInfiniteScroll: true,
-      this.reverse: false,
-      this.autoPlay: false,
-      this.autoPlayInterval: const Duration(seconds: 4),
+      this.aspectRatio = 16 / 9,
+      this.viewportFraction = 0.8,
+      this.initialPage = 0,
+      int realPage = 10000,
+      this.enableInfiniteScroll = true,
+      this.reverse = false,
+      this.autoPlay = false,
+      this.autoPlayInterval = const Duration(seconds: 4),
       this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-      this.autoPlayCurve: Curves.fastOutSlowIn,
+      this.autoPlayCurve = Curves.fastOutSlowIn,
       this.pauseAutoPlayOnTouch,
       this.enlargeCenterPage = false,
       this.onPageChanged,
       this.scrollPhysics,
-      this.scrollDirection: Axis.horizontal})
-      : this.realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
-        this.items = null,
-        this.pageController = PageController(
+      this.scrollDirection = Axis.horizontal})
+      : realPage = enableInfiniteScroll ? realPage + initialPage : initialPage,
+        items = null,
+        pageController = PageController(
           viewportFraction: viewportFraction as double,
           initialPage: enableInfiniteScroll ? realPage + (initialPage as int) : initialPage as int,
-        );
+        ), super(key: key);
 
   /// The widgets to be shown in the carousel of default constructor
   final List<Widget>? items;
@@ -220,7 +220,7 @@ class _BankingCarouselSliderState extends State<BankingCarouselSlider> with Tick
 
   Widget getWrapper(Widget child) {
     if (widget.height != null) {
-      final Widget wrapper = Container(height: widget.height, child: child);
+      final Widget wrapper = SizedBox(height: widget.height, child: child);
       return widget.autoPlay && widget.pauseAutoPlayOnTouch != null ? addGestureDetection(wrapper) : wrapper;
     } else {
       final Widget wrapper = AspectRatio(aspectRatio: widget.aspectRatio, child: child);
@@ -261,8 +261,8 @@ class _BankingCarouselSliderState extends State<BankingCarouselSlider> with Tick
             // this is a dirty hack
             // ignore: unnecessary_null_comparison
             if (widget.pageController.position.minScrollExtent == null) {
-              Future.delayed(Duration(microseconds: 1), () {
-                if (this.mounted) {
+              Future.delayed(const Duration(microseconds: 1), () {
+                if (mounted) {
                   setState(() {});
                 }
               });

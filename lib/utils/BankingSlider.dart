@@ -1,6 +1,7 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kroell_bank/screen/BankingLogin.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../model/BankingModel.dart';
 
@@ -13,6 +14,8 @@ import 'BankingStrings.dart';
 class BankingSliderWidget extends StatefulWidget {
   static String tag = '/BankingSlider';
 
+  const BankingSliderWidget({Key? key}) : super(key: key);
+
   @override
   BankingSliderWidgetState createState() => BankingSliderWidgetState();
 }
@@ -24,32 +27,32 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
   @override
   void initState() {
     super.initState();
-    mList = bankingCardList();
+    mList = [UserData().userCard!]; // Only show the logged-in user's card
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: mList.length,
             shrinkWrap: true,
-            padding: EdgeInsets.only(left: 8, right: 16),
+            padding: const EdgeInsets.only(left: 8, right: 16),
             itemBuilder: (BuildContext context, int index) {
-              return Container(
+              return SizedBox(
                 width: 320,
                 child: Stack(
                   children: [
-                    Container(
+                    SizedBox(
                         height: 200,
                         width: 320,
                         child: Image.asset(Banking_ic_CardImage,
                             fit: BoxFit.fill)),
                     Container(
-                      padding: EdgeInsets.only(left: 16, right: 8),
+                      padding: const EdgeInsets.only(left: 16, right: 8),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -76,13 +79,13 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                                   size: 18,
                                   fontFamily: fontMedium)),
                           4.height,
-                          Text('1121 *** ** *** 5555',
+                          Text(UserData().userCard!.accountNumber!,
                               style: primaryTextStyle(
                                   color: Banking_whitePureColor,
                                   size: 18,
                                   fontFamily: fontMedium)),
                           8.height,
-                          Text("\$" + mList[currentIndexPage].rs.validate(),
+                          Text("\$${mList[currentIndexPage].rs.validate()}",
                               style: primaryTextStyle(
                                   color: Banking_whitePureColor,
                                   size: 18,
@@ -97,17 +100,6 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
             },
           ),
         ),
-        16.height,
-        DotsIndicator(
-          dotsCount: mList.length,
-          position: currentIndexPage.toInt(),
-          decorator: DotsDecorator(
-            size: const Size.square(5.0),
-            activeSize: const Size.square(8.0),
-            color: Banking_greyColor,
-            activeColor: Banking_blackColor,
-          ),
-        )
       ],
     );
   }

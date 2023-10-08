@@ -8,6 +8,8 @@ import '../utils/BankingWidget.dart';
 class BankingChangePassword extends StatefulWidget {
   static var tag = "/BankingChangePassword";
 
+  const BankingChangePassword({Key? key}) : super(key: key);
+
   @override
   _BankingChangePasswordState createState() => _BankingChangePasswordState();
 }
@@ -48,7 +50,7 @@ class _BankingChangePasswordState extends State<BankingChangePassword> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
