@@ -11,6 +11,7 @@ import '../utils/BankingWidget.dart';
 import 'package:kroell_bank/services/http_client_service.dart';
 import 'dart:convert';
 
+
 class BankingLogin extends StatefulWidget {
   @override
   _BankingLoginState createState() => _BankingLoginState();
@@ -26,6 +27,9 @@ class UserData {
   UserData._internal();
 
   String? username;
+  String? jwtToken; 
+  int? accountId;
+  int? clientId;
   BankingCardModel? userCard;
 }
 
@@ -66,13 +70,17 @@ class _BankingLoginState extends State<BankingLogin> {
 
       if (response.statusCode == 200) {
         // Login successful
-        final responseBody = await response.transform(utf8.decoder).join();
+        final responseBody = jsonDecode(await response.transform(utf8.decoder).join());
+        UserData().username = _usernameController.text;
+        UserData().jwtToken = responseBody['jwtToken'];
+        UserData().accountId = responseBody['Account_Id'];  // Store the Account_Id
+        UserData().clientId = responseBody['Client_Id'];
 
         setState(() {
           message = 'Login successful';
         });
 
-        UserData().username = _usernameController.text;
+
 
           // Mock user card data
           UserData().userCard = BankingCardModel(

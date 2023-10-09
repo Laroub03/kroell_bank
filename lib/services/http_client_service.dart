@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
-
+// For fetching the profile:
+// final profile = await _httpClientService.fetchProfile(UserData().clientId!, UserData().jwtToken!);
 
 class HttpClientService {
   HttpClient? _httpClient;
@@ -47,5 +49,99 @@ class HttpClientService {
       await initializeHttpClient();
     }
     return _httpClient!;
+  }
+
+  Future<List<dynamic>> fetchProfile(int clientId, String token) async {
+    final httpClient = await getHttpClient();
+    final request = await httpClient.postUrl(
+      Uri.parse('https://10.0.2.2:8443/api/BankAPI/FetchProfile'),
+    );
+
+    request.headers.set('Content-Type', 'application/json');
+    request.headers.set('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode({
+      'Client_Id': clientId,
+    }));
+
+    final response = await request.close();
+
+    if (response.statusCode == 200) {
+      final responseBody = await response.transform(utf8.decoder).join();
+      return jsonDecode(responseBody);
+    } else {
+      throw Exception('Failed to fetch profile');
+    }
+  }
+
+  Future<String> makeTransfer(int senderID, String receiverCardNumber, double amount, String token) async {
+    final httpClient = await getHttpClient();
+    final request = await httpClient.postUrl(
+      Uri.parse('https://10.0.2.2:8443/api/BankAPI/MakeTransfer'),
+    );
+
+    request.headers.set('Content-Type', 'application/json');
+    request.headers.set('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode({
+      'SenderID': senderID,
+      'ReceiverCardNumber': receiverCardNumber,
+      'TransferAmount': amount,
+    }));
+
+    final response = await request.close();
+
+    if (response.statusCode == 200) {
+      final responseBody = await response.transform(utf8.decoder).join();
+      return responseBody;
+    } else {
+      throw Exception('Failed to make transfer');
+    }
+  }
+
+  Future<List<dynamic>> getTransactions(int accountId, String token) async {
+    final httpClient = await getHttpClient();
+    final request = await httpClient.postUrl(
+      Uri.parse('https://10.0.2.2:8443/api/BankAPI/GetTransactions'),
+    );
+
+    request.headers.set('Content-Type', 'application/json');
+    request.headers.set('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode({
+      'AccountID': accountId,
+    }));
+
+    final response = await request.close();
+
+    if (response.statusCode == 200) {
+      final responseBody = await response.transform(utf8.decoder).join();
+      return jsonDecode(responseBody);
+    } else {
+      throw Exception('Failed to get transactions');
+    }
+  }
+
+  Future<List<dynamic>> getCard(int accountId, String token) async {
+    final httpClient = await getHttpClient();
+    final request = await httpClient.postUrl(
+      Uri.parse('https://10.0.2.2:8443/api/BankAPI/GetCard'),
+    );
+
+    request.headers.set('Content-Type', 'application/json');
+    request.headers.set('Authorization', 'Bearer $token');
+
+    request.write(jsonEncode({
+      'AccountID': accountId,
+    }));
+
+    final response = await request.close();
+
+    if (response.statusCode == 200) {
+      final responseBody = await response.transform(utf8.decoder).join();
+      return jsonDecode(responseBody);
+    } else {
+      throw Exception('Failed to get card details');
+    }
   }
 }
