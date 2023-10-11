@@ -70,24 +70,33 @@ class _BankingLoginState extends State<BankingLogin> {
 
       if (response.statusCode == 200) {
         // Login successful
-        final responseBody = jsonDecode(await response.transform(utf8.decoder).join());
-        UserData().username = _usernameController.text;
-        UserData().jwtToken = responseBody['jwtToken'];
-        UserData().accountId = responseBody['Account_Id'];  // Store the Account_Id
-        UserData().clientId = responseBody['Client_Id'];
+        final data = jsonDecode(await response.transform(utf8.decoder).join());
+        final token = data['jwtToken'];
+        final int accountId = data['Account_Id'] ?? 0; 
+        final int clientId = data['Client_Id'] ?? 0;
+ 
+
+
+        // Store token and account ID in shared preferences
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', token);
+        await prefs.setInt('account_id', accountId);
+        await prefs.setInt('client_id', clientId);
+
 
         setState(() {
           message = 'Login successful';
         });
 
+        print('Response Body: $data');
 
+        // // Mock user card data
+        // UserData().userCard = BankingCardModel(
+        //   name: _usernameController.text,
+        //   rs: "12,500",
+        //   accountNumber: "1121 *** ** *** 1555",
+        // );
 
-          // Mock user card data
-          UserData().userCard = BankingCardModel(
-            name: _usernameController.text,
-            rs: "12,500",
-            accountNumber: "1121 *** ** *** 1555",
-          );
 
         // Navigate to the BankingDashboard screen upon successful login
         Navigator.of(context).pushReplacement(

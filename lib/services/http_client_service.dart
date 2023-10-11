@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 // For fetching the profile:
-// final profile = await _httpClientService.fetchProfile(UserData().clientId!, UserData().jwtToken!);
+ // final profile = await _httpClientService.fetchProfile(UserData().clientId!, UserData().jwtToken!);
 
 class HttpClientService {
   HttpClient? _httpClient;
@@ -21,12 +21,12 @@ class HttpClientService {
         // Load the private key data from assets
         ByteData keyData =
             await rootBundle.load('assets/fluttertest+4-client-key.pem');
-        
+
         // Convert ByteData to Uint8List for certificate and key
         List<int> caBytes = caData.buffer.asUint8List();
         List<int> certBytes = certData.buffer.asUint8List();
         List<int> keyBytes = keyData.buffer.asUint8List();
-        
+
         // Create a security context and configure it with the CA, certificate, and private key
         SecurityContext secContext = SecurityContext(withTrustedRoots: true)
           ..setTrustedCertificatesBytes(caBytes)
@@ -36,7 +36,7 @@ class HttpClientService {
         // Initialize the HttpClient with the configured security context
         _httpClient = HttpClient(context: secContext);
       } else {
-        // For web, just provide a default HttpClient without any security context
+        // For web, just ide a default HttpClient without any security context
         _httpClient = HttpClient();
       }
     }
@@ -74,7 +74,8 @@ class HttpClientService {
     }
   }
 
-  Future<String> makeTransfer(int senderID, String receiverCardNumber, double amount, String token) async {
+  Future<String> makeTransfer(int senderID, String receiverCardNumber,
+      double amount, String token) async {
     final httpClient = await getHttpClient();
     final request = await httpClient.postUrl(
       Uri.parse('https://10.0.2.2:8443/api/BankAPI/MakeTransfer'),

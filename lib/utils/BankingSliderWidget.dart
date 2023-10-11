@@ -273,12 +273,13 @@ class _BankingCarouselSliderState extends State<BankingCarouselSlider> with Tick
 
             final double height = widget.height ?? MediaQuery.of(context).size.width * (1 / widget.aspectRatio);
             final double distortionValue = widget.enlargeCenterPage ? Curves.easeOut.transform(value) : 1.0;
-
+            print(widget.pageController.page);
             if (widget.scrollDirection == Axis.horizontal) {
               return Center(child: SizedBox(height: distortionValue * height, child: child));
             } else {
               return Center(child: SizedBox(width: distortionValue * MediaQuery.of(context).size.width, child: child));
             }
+            
           },
         );
       },
