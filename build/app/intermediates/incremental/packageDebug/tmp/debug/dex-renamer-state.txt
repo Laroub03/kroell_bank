@@ -1,4 +1,4 @@
-#Wed Oct 11 08:34:16 CEST 2023
+#Thu Oct 12 12:37:22 CEST 2023
 base.0=/Users/ayoublaroub/School/kroell_bank/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/ayoublaroub/School/kroell_bank/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
 base.2=/Users/ayoublaroub/School/kroell_bank/build/app/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex

@@ -109,14 +109,6 @@ class BankingHome1State extends State<BankingHome1> {
                                     name: "Default Account",
                                     acno: "1234567899",
                                     bal: "\$12,500"),
-                                TopCard(
-                                    name: "Adam Johnson",
-                                    acno: "9874563210",
-                                    bal: "\$18,000"),
-                                TopCard(
-                                    name: "Ana Willson",
-                                    acno: "5821479630",
-                                    bal: "\$12,500"),
                               ],
                               onPageChanged: (value) {
                                 setState(() => currentIndexPage = value);

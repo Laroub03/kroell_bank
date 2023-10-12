@@ -11,7 +11,6 @@ import '../utils/BankingWidget.dart';
 import 'package:kroell_bank/services/http_client_service.dart';
 import 'dart:convert';
 
-
 class BankingLogin extends StatefulWidget {
   @override
   _BankingLoginState createState() => _BankingLoginState();
@@ -27,12 +26,8 @@ class UserData {
   UserData._internal();
 
   String? username;
-  String? jwtToken; 
-  int? accountId;
-  int? clientId;
   BankingCardModel? userCard;
 }
-
 
 class _BankingLoginState extends State<BankingLogin> {
   final TextEditingController _usernameController = TextEditingController();
@@ -43,11 +38,11 @@ class _BankingLoginState extends State<BankingLogin> {
   // Function to perform user login
   Future<void> login() async {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
-    setState(() {
-      message = "Username or password cannot be blank. Please try again!";
-    });
-    return;
-  }
+      setState(() {
+        message = "Username or password cannot be blank. Please try again!";
+      });
+      return;
+    }
 
     try {
       final httpClient = await _httpClientService.getHttpClient();
@@ -70,33 +65,23 @@ class _BankingLoginState extends State<BankingLogin> {
 
       if (response.statusCode == 200) {
         // Login successful
-        final data = jsonDecode(await response.transform(utf8.decoder).join());
-        final token = data['jwtToken'];
-        final int accountId = data['Account_Id'] ?? 0; 
-        final int clientId = data['Client_Id'] ?? 0;
- 
+        final responseBody = jsonDecode(await response.transform(utf8.decoder).join());
+        final loginResponse = Login.fromJson(responseBody);
+        UserData().username = _usernameController.text;
+        final accountId = loginResponse.account_Id;
 
+        print(
+            'Logged in with account ID: $accountId'); // Print the account ID for debugging
+
+        print(responseBody);
 
         // Store token and account ID in shared preferences
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('token', token);
         await prefs.setInt('account_id', accountId);
-        await prefs.setInt('client_id', clientId);
-
 
         setState(() {
           message = 'Login successful';
         });
-
-        print('Response Body: $data');
-
-        // // Mock user card data
-        // UserData().userCard = BankingCardModel(
-        //   name: _usernameController.text,
-        //   rs: "12,500",
-        //   accountNumber: "1121 *** ** *** 1555",
-        // );
-
 
         // Navigate to the BankingDashboard screen upon successful login
         Navigator.of(context).pushReplacement(
@@ -120,7 +105,7 @@ class _BankingLoginState extends State<BankingLogin> {
     }
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Banking_app_Background,
@@ -151,21 +136,18 @@ class _BankingLoginState extends State<BankingLogin> {
                   ),
                   20.height,
                   EditText(
-                    text: "Username", 
-                    isPassword: false,
-                    mController: _usernameController
-                    ),
+                      text: "Username",
+                      isPassword: false,
+                      mController: _usernameController),
                   16.height,
                   EditText(
-                    text: "Password", 
-                    isPassword: true, 
-                    isSecure: true,
-                    mController: _passwordController
-                    ),
+                      text: "Password",
+                      isPassword: true,
+                      isSecure: true,
+                      mController: _passwordController),
                   20.height,
                   BankingButton(
-                      textContent: Banking_lbl_Login,
-                      onPressed: login),
+                      textContent: Banking_lbl_Login, onPressed: login),
                   Text(message),
                 ],
               ),

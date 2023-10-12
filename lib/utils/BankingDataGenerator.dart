@@ -165,22 +165,6 @@ List<BankingPaymentModel> bankingPaymentDetailList() {
   return list;
 }
 
-// List<BankingCardModel> bankingCardList() {
-//   List<BankingCardModel> list = [];
-//   var list1 = BankingCardModel(
-//       name: "Laura Smith", bank: "The Same Bank", rs: "12,500");
-//   list.add(list1);
-
-//   var list2 =
-//       BankingCardModel(name: "Adam Johnson", bank: "Union Bank", rs: "18,000");
-//   list.add(list2);
-
-//   var list3 = BankingCardModel(
-//       name: "Ana Willson", bank: "Unitied States Bank", rs: "50,000");
-//   list.add(list3);
-
-//   return list;
-// }
 
 List<BankingPaymentHistoryModel> bankingHistoryList1() {
   List<BankingPaymentHistoryModel> list = [];

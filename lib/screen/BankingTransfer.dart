@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'BankingTransferSuccessful.dart';
+import 'package:kroell_bank/services/http_client_service.dart';
+import 'BankingLogin.dart';
+import 'package:kroell_bank/model/BankingModel.dart';
 import '../utils/BankingColors.dart';
 import '../utils/BankingContants.dart';
 import '../utils/BankingImages.dart';
@@ -11,24 +14,45 @@ import '../utils/BankingWidget.dart';
 
 // Create a stateful widget for the banking transfer screen
 class BankingTransfer extends StatefulWidget {
-  static var tag = "/BankingTransfer";
-
   @override
   _BankingTransferState createState() => _BankingTransferState();
 }
 
 class _BankingTransferState extends State<BankingTransfer> {
-  // Define state variables
-  bool isSwitch = false; // Indicates whether the "Save this Beneficiary" switch is on
-  var tapCount = 0; // Keeps track of how many times the Confirm button is tapped
+  bool isSwitch = false;
+  bool isGetOtp = false;
+  var tapCount = 0;
+  final HttpClientService _httpClientService = HttpClientService();
+  CardInfo? _cardInfo;
 
-  // Function to handle the Confirm button tap
   void tappedConfirm() {
     if (tapCount != 1) {
-      // Launch the BankingTransferSuccessful screen if the button is tapped for the first time
       BankingTransferSuccessful().launch(context);
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchCardInfo();
+  }
+
+  Future<void> _fetchCardInfo() async {
+  try {
+    if (UserData().username != null) {
+      List<CardInfo> cards = await _httpClientService.getCard(UserData().username!);
+      if (cards.isNotEmpty) {
+        setState(() {
+          _cardInfo = cards.first;
+        });
+      }
+    } else {
+      print("Username is null");
+    }
+  } catch (e) {
+    print("Error fetching card details: $e");
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +66,9 @@ class _BankingTransferState extends State<BankingTransfer> {
             children: [
               10.height,
               Text(
-                Banking_lbl_Transfer,
+                isSwitch == true
+                    ? Banking_lbl_Confirm_Transfer
+                    : Banking_lbl_Transfer,
                 style: primaryTextStyle(
                     color: Banking_TextColorPrimary,
                     size: 26,
@@ -55,7 +81,40 @@ class _BankingTransferState extends State<BankingTransfer> {
                       size: 14,
                       fontFamily: fontBold)),
               16.height,
-              BankingSliderWidget(), // Custom widget for a slider
+              BankingSliderWidget().visible(isSwitch == false),
+              Container(
+                margin: EdgeInsets.only(
+                    left: spacing_standard_new, right: spacing_standard_new),
+                child: Stack(
+                  children: [
+                    Image.asset(Banking_ic_CardImage,
+                        fit: BoxFit.cover, height: 200),
+                    if (_cardInfo != null) ...[
+                      Positioned(
+                        top: 40,
+                        left: 20,
+                        child: Text(_cardInfo!.client_Name, 
+                          style: primaryTextStyle(color: Banking_whitePureColor, size: 18, fontFamily: fontMedium)
+                        ),
+                      ),
+                      Positioned(
+                        top: 80,
+                        left: 20,
+                        child: Text(_cardInfo!.card_Nr, 
+                          style: primaryTextStyle(color: Banking_whitePureColor, size: 18, fontFamily: fontMedium)
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 40,
+                        left: 20,
+                        child: Text("Balance \$: ${_cardInfo!.balance}", 
+                          style: primaryTextStyle(color: Banking_whitePureColor, size: 14, fontFamily: fontMedium)
+                        ),
+                      ),
+                    ]
+                  ],
+                ),
+              ).visible(isSwitch == true),
               16.height,
               Divider(),
               Column(
@@ -137,64 +196,4 @@ class _BankingTransferState extends State<BankingTransfer> {
       ),
     );
   }
-}
-
-// Custom dialog widget
-class CustomDialog extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 0.0,
-      backgroundColor: Colors.transparent,
-      child: dialogContent(context),
-    );
-  }
-}
-
-// Function to create the content for the custom dialog
-dialogContent(BuildContext context) {
-  return Container(
-    padding: EdgeInsets.fromLTRB(8, 16, 8, 16),
-    decoration: boxDecorationWithRoundedCorners(
-        borderRadius: BorderRadius.circular(10),
-        backgroundColor: Banking_whitePureColor),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        8.height,
-        Text(Banking_lbl_Same_Bank,
-                style: primaryTextStyle(
-                    color: Banking_TextColorSecondary,
-                    size: 16,
-                    fontFamily: fontRegular))
-            .onTap(() {
-          finish(context);
-        }),
-        8.height,
-        Divider(thickness: 1.0, color: Banking_greyColor.withOpacity(0.5)),
-        8.height,
-        Text(Banking_lbl_Other_Bank,
-                style: primaryTextStyle(
-                    color: Banking_TextColorSecondary,
-                    size: 16,
-                    fontFamily: fontRegular))
-            .onTap(() {
-          finish(context);
-        }),
-        8.height,
-        Divider(thickness: 1.0, color: Banking_greyColor.withOpacity(0.5)),
-        8.height,
-        Text(Banking_lbl_Credit_Card,
-                style: primaryTextStyle(
-                    color: Banking_TextColorSecondary,
-                    size: 16,
-                    fontFamily: fontRegular))
-            .onTap(() {
-          finish(context);
-        }),
-        8.height,
-      ],
-    ),
-  );
 }

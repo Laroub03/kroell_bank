@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:kroell_bank/model/BankingModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // For fetching the profile:
- // final profile = await _httpClientService.fetchProfile(UserData().clientId!, UserData().jwtToken!);
+// final profile = await _httpClientService.fetchProfile(UserData().clientId!, UserData().jwtToken!);
 
 class HttpClientService {
   HttpClient? _httpClient;
@@ -36,7 +38,7 @@ class HttpClientService {
         // Initialize the HttpClient with the configured security context
         _httpClient = HttpClient(context: secContext);
       } else {
-        // For web, just ide a default HttpClient without any security context
+        // For web, just provide a default HttpClient without any security context
         _httpClient = HttpClient();
       }
     }
@@ -123,26 +125,39 @@ class HttpClientService {
     }
   }
 
-  Future<List<dynamic>> getCard(int accountId, String token) async {
+  Future<List<CardInfo>> getCard(String username) async {
     final httpClient = await getHttpClient();
     final request = await httpClient.postUrl(
       Uri.parse('https://10.0.2.2:8443/api/BankAPI/GetCard'),
     );
 
+    // Set request headers for JSON data
     request.headers.set('Content-Type', 'application/json');
-    request.headers.set('Authorization', 'Bearer $token');
 
-    request.write(jsonEncode({
-      'AccountID': accountId,
-    }));
+    final prefs = await SharedPreferences.getInstance();
+    final account_Id = prefs.getInt('account_id');
+    
+    print('Fetching card data for account ID: $account_Id');
+
+    // Data to be sent to fetch card info
+    final cardData = {
+      'account_Id': account_Id
+    };
+
+
+    request.write(jsonEncode(cardData));
 
     final response = await request.close();
 
+    print(response);
+
     if (response.statusCode == 200) {
       final responseBody = await response.transform(utf8.decoder).join();
-      return jsonDecode(responseBody);
+      final List<dynamic> parsedJson = jsonDecode(responseBody);
+      print('Parsed Card Data: $parsedJson');
+      return parsedJson.map((json) => CardInfo.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to get card details');
+      throw Exception('Failed to fetch card info');
     }
   }
 }

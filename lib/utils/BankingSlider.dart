@@ -27,8 +27,13 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
   @override
   void initState() {
     super.initState();
-    mList = [UserData().userCard!]; // Only show the logged-in user's card
-  }
+    if (UserData().userCard != null) {
+        mList = [UserData().userCard!];
+    } else {
+        mList = []; // Or provide a default value or handle this case appropriately
+    }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +84,7 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                                   size: 18,
                                   fontFamily: fontMedium)),
                           4.height,
-                          Text(UserData().userCard!.accountNumber!,
+                          Text(UserData().userCard!.cardNr!,
                               style: primaryTextStyle(
                                   color: Banking_whitePureColor,
                                   size: 18,

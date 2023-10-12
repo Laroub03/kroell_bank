@@ -21,6 +21,7 @@ class BankingSavingModel {
   BankingSavingModel({this.title, this.date, this.rs, this.interest});
 }
 
+
 class BankingPaymentModel {
   String? title = "";
   String? img = "";
@@ -33,10 +34,61 @@ class BankingCardModel {
   String? name = "";
   String? bank = "";
   String? rs = "";
-  String? accountNumber;
+  String? cardNr;
 
-  BankingCardModel({this.name, this.bank, this.rs, this.accountNumber});
+  BankingCardModel({this.name, this.bank, this.rs, this.cardNr});
 }
+
+class CardInfo {
+  final String client_Name;
+  final String card_Nr;
+  final int cvv;
+  final DateTime expire_Date;
+  final double spending_Limit;
+  final double balance;
+
+  CardInfo({
+    required this.client_Name,
+    required this.card_Nr,
+    required this.cvv,
+    required this.expire_Date,
+    required this.spending_Limit,
+    required this.balance,
+  });
+
+  // Factory constructor to create an instance of CardInfo from a map
+  factory CardInfo.fromJson(Map<String, dynamic> json) {
+    return CardInfo(
+      client_Name: json['client_Name'],
+      card_Nr: json['card_Nr'],
+      cvv: json['cvv'],
+      expire_Date: DateTime.parse(json['expire_Date']),
+      spending_Limit: json['spending_Limit'].toDouble(),
+      balance: json['balance'].toDouble(),
+    );
+  }
+}
+
+class Login {
+   final String jwtToken;
+   final int account_Id;
+   final int client_Id;
+
+   Login({
+    required this.jwtToken,
+    required this.account_Id,
+    required this.client_Id,
+  });
+
+  factory Login.fromJson(Map<String, dynamic> json) {
+    return Login(
+      jwtToken: json['jwtToken'],
+      account_Id: json['account_Id'],
+      client_Id: json['client_Id'],
+    );
+  }
+}
+
 
 class BankingPaymentHistoryModel {
   String? title = "";
@@ -77,3 +129,5 @@ class BankingHomeModel2 {
 
   BankingHomeModel2({this.title, this.icon, this.color, this.charge});
 }
+
+
