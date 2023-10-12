@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:kroell_bank/screen/BankingLogin.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../model/BankingModel.dart';
-
 import 'BankingColors.dart';
 import 'BankingContants.dart';
 import 'BankingDataGenerator.dart';
 import 'BankingImages.dart';
 import 'BankingStrings.dart';
+import 'package:kroell_bank/services/http_client_service.dart'; // Import the HttpClientService
 
 class BankingSliderWidget extends StatefulWidget {
   static String tag = '/BankingSlider';
@@ -22,18 +22,40 @@ class BankingSliderWidget extends StatefulWidget {
 
 class BankingSliderWidgetState extends State<BankingSliderWidget> {
   var currentIndexPage = 0;
-  late List<BankingCardModel> mList;
+  List<CardInfo> mList = [];
+  final HttpClientService _httpClientService = HttpClientService(); // Create an instance of HttpClientService
 
   @override
   void initState() {
     super.initState();
-    if (UserData().userCard != null) {
-        mList = [UserData().userCard!];
-    } else {
-        mList = []; // Or provide a default value or handle this case appropriately
-    }
-}
+    _fetchCardDetails();
+    mList = mockCardData; // Use mock data
+  }
 
+    List<CardInfo> mockCardData = [
+    CardInfo(
+      client_Name: "Bob Swagger",
+      card_Nr: "1234 5678 9012 3456",
+      cvv: 123,
+      expire_Date: DateTime.now().add(Duration(days: 365)),
+      spending_Limit: 5000,
+      balance: 1000
+    )
+  ];
+
+
+  Future<void> _fetchCardDetails() async {
+    try {
+      List<CardInfo> cards = await _httpClientService.getCard(UserData().username!);
+      if (cards.isNotEmpty) {
+        setState(() {
+          mList = cards;
+        });
+      }
+    } catch (e) {
+      print("Error fetching card details: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,11 +86,11 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                           24.height,
                           Row(
                             children: [
-                              Text(mList[currentIndexPage].name.validate(),
-                                      style: primaryTextStyle(
-                                          color: Banking_whitePureColor,
-                                          size: 18,
-                                          fontFamily: fontMedium))
+                              Text(mList[index].client_Name,
+                                  style: primaryTextStyle(
+                                      color: Banking_whitePureColor,
+                                      size: 18,
+                                      fontFamily: fontMedium))
                                   .expand(),
                               Text(Banking_lbl_app_Name,
                                   style: primaryTextStyle(
@@ -77,20 +99,14 @@ class BankingSliderWidgetState extends State<BankingSliderWidget> {
                                       fontFamily: fontMedium))
                             ],
                           ),
-                          24.height,
-                          Text(mList[currentIndexPage].bank.validate(),
-                              style: primaryTextStyle(
-                                  color: Banking_whitePureColor,
-                                  size: 18,
-                                  fontFamily: fontMedium)),
-                          4.height,
-                          Text(UserData().userCard!.cardNr!,
+                          35.height,
+                          Text(mList[index].card_Nr,
                               style: primaryTextStyle(
                                   color: Banking_whitePureColor,
                                   size: 18,
                                   fontFamily: fontMedium)),
                           8.height,
-                          Text("\$${mList[currentIndexPage].rs.validate()}",
+                          Text("\$${mList[index].balance}",
                               style: primaryTextStyle(
                                   color: Banking_whitePureColor,
                                   size: 18,

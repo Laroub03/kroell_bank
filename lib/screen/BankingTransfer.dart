@@ -38,21 +38,25 @@ class _BankingTransferState extends State<BankingTransfer> {
   }
 
   Future<void> _fetchCardInfo() async {
-  try {
-    if (UserData().username != null) {
-      List<CardInfo> cards = await _httpClientService.getCard(UserData().username!);
-      if (cards.isNotEmpty) {
-        setState(() {
-          _cardInfo = cards.first;
-        });
+    try {
+      if (UserData().username != null) {
+        List<CardInfo> cards =
+            await _httpClientService.getCard(UserData().username!);
+
+        print(cards);
+
+        if (cards.isNotEmpty) {
+          setState(() {
+            _cardInfo = cards.first;
+          });
+        }
+      } else {
+        print("Username is null");
       }
-    } else {
-      print("Username is null");
+    } catch (e) {
+      print("Error fetching card details: $e");
     }
-  } catch (e) {
-    print("Error fetching card details: $e");
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +70,7 @@ class _BankingTransferState extends State<BankingTransfer> {
             children: [
               10.height,
               Text(
-                isSwitch == true
-                    ? Banking_lbl_Confirm_Transfer
-                    : Banking_lbl_Transfer,
+                Banking_lbl_Transfer,
                 style: primaryTextStyle(
                     color: Banking_TextColorPrimary,
                     size: 26,
@@ -81,40 +83,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                       size: 14,
                       fontFamily: fontBold)),
               16.height,
-              BankingSliderWidget().visible(isSwitch == false),
-              Container(
-                margin: EdgeInsets.only(
-                    left: spacing_standard_new, right: spacing_standard_new),
-                child: Stack(
-                  children: [
-                    Image.asset(Banking_ic_CardImage,
-                        fit: BoxFit.cover, height: 200),
-                    if (_cardInfo != null) ...[
-                      Positioned(
-                        top: 40,
-                        left: 20,
-                        child: Text(_cardInfo!.client_Name, 
-                          style: primaryTextStyle(color: Banking_whitePureColor, size: 18, fontFamily: fontMedium)
-                        ),
-                      ),
-                      Positioned(
-                        top: 80,
-                        left: 20,
-                        child: Text(_cardInfo!.card_Nr, 
-                          style: primaryTextStyle(color: Banking_whitePureColor, size: 18, fontFamily: fontMedium)
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 40,
-                        left: 20,
-                        child: Text("Balance \$: ${_cardInfo!.balance}", 
-                          style: primaryTextStyle(color: Banking_whitePureColor, size: 14, fontFamily: fontMedium)
-                        ),
-                      ),
-                    ]
-                  ],
-                ),
-              ).visible(isSwitch == true),
+              BankingSliderWidget(), // Custom widget for a slider
               16.height,
               Divider(),
               Column(
@@ -123,7 +92,7 @@ class _BankingTransferState extends State<BankingTransfer> {
                   TextField(
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      hintText: "Account Number",
+                      hintText: "Card Number",
                       border: InputBorder.none,
                     ),
                     style: primaryTextStyle(
@@ -134,10 +103,11 @@ class _BankingTransferState extends State<BankingTransfer> {
                   Divider(height: 24),
                   Row(
                     children: [
-                      Text("\$", style: primaryTextStyle(
-                          color: Banking_TextColorPrimary,
-                          size: 16,
-                          fontFamily: fontRegular)),
+                      Text("\$",
+                          style: primaryTextStyle(
+                              color: Banking_TextColorPrimary,
+                              size: 16,
+                              fontFamily: fontRegular)),
                       Expanded(
                         child: TextField(
                           keyboardType: TextInputType.number,

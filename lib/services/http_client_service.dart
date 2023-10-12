@@ -136,26 +136,29 @@ class HttpClientService {
 
     final prefs = await SharedPreferences.getInstance();
     final account_Id = prefs.getInt('account_id');
-    
-    print('Fetching card data for account ID: $account_Id');
+
+    print('Fetching card data for account ID: $account_Id'); // Print the account ID for debugging
 
     // Data to be sent to fetch card info
     final cardData = {
       'account_Id': account_Id
     };
 
-
     request.write(jsonEncode(cardData));
 
     final response = await request.close();
 
-    print(response);
-
     if (response.statusCode == 200) {
       final responseBody = await response.transform(utf8.decoder).join();
       final List<dynamic> parsedJson = jsonDecode(responseBody);
-      print('Parsed Card Data: $parsedJson');
-      return parsedJson.map((json) => CardInfo.fromJson(json)).toList();
+
+      if (parsedJson.isEmpty) {
+         print('No card data available for account ID: $account_Id');
+         // Handle this case in the UI, e.g., show a message to the user
+         return []; // Return an empty list
+      } else {
+         return parsedJson.map((json) => CardInfo.fromJson(json)).toList();
+      }
     } else {
       throw Exception('Failed to fetch card info');
     }
